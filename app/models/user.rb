@@ -4,6 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :posts, dependent: :destroy
+  has_many :relationships, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+
+
   validates :account_id, length: { in: 6..12 }, format: { with: /\A[0-9a-zA-Z]*\z/ }
   validates :password, length: { in: 6..12 },  format: { with: /\A[0-9a-zA-Z]*\z/ }
 

@@ -1,5 +1,9 @@
 class Post < ApplicationRecord
 
+  belongs_to :user
+  has_many :notifications, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+
   has_one_attached :image
 
   enum prefecture: { hokkaido: 0, aomori: 1, iwate: 2, akita: 3, miyagi: 4,
