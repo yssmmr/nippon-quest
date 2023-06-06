@@ -8,6 +8,9 @@
   <%= f.label :prefecture, "都道府県" %><br />
   <%= f.select :prefecture, Post.prefectures.keys.map {|k| [I18n.t("enums.post.prefecture.#{k}"), k]}, include_blank: "--選択して下さい--" %><br />
 
+  <%= f.label :location_genre, "場所ジャンル" %><br />
+  <%= f.select :location_genre, Post.location_genres.keys.map {|k| [I18n.t("enums.post.location_genre.#{k}"), k]}, include_blank: "--選択して下さい--" %><br />
+
   <%= f.label :image ,"写真" %><br />
   <%= f.file_field :image, accept: "image/*" %><br />
 
@@ -16,11 +19,11 @@
 
 
   <%= f.label :address, "住所" %><br />
+  <%= f.text_field :address %><br />
 
   <!-- googleマップから引っ張ってこれるように！ -->
-
-  <!--</%= f.hidden_field :user_id, :value => current_user.user_id %>-->
-  <!--</%= f.hidden_field :name, :value => current_user.name %>-->
+  <%= f.hidden_field :latitude, value: "1" %>
+  <%= f.hidden_field :longitude, value: "1" %>
 
 
 

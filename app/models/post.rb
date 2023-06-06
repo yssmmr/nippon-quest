@@ -6,6 +6,16 @@ class Post < ApplicationRecord
 
   has_one_attached :image
 
+  validates :user_id, presence: true
+  validates :location_name, presence: true
+  validates :address, presence: true
+  validates :latitude, presence: true
+  validates :longitude, presence: true
+  validates :memo, presence: true
+  validates :prefecture, presence: true
+  validates :location_genre, presence: true
+
+
   enum prefecture: { hokkaido: 0, aomori: 1, iwate: 2, akita: 3, miyagi: 4,
                      yamagata: 5, fukushima: 6, nigata: 7, tochigi: 8,
                      ibaraki: 9, gunma: 10, chiba: 11, tokyo: 12, saitama: 13,
