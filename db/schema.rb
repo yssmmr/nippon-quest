@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2023_06_04_073029) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "image_id"
     t.string "location_name", null: false
     t.string "address", null: false
     t.decimal "latitude", null: false
@@ -63,7 +62,6 @@ ActiveRecord::Schema.define(version: 2023_06_04_073029) do
     t.string "name", null: false
     t.string "account_id", null: false
     t.string "introduction"
-    t.integer "profile_image"
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
