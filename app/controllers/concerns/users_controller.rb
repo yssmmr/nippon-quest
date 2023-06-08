@@ -22,10 +22,16 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+    
 
   end
 
   def destroy
+    @user = current_user
+    @user.update(is_deleted: true)
+    sign_out
+    redirect_to about_path
+
   end
 
   private
