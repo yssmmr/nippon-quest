@@ -36,7 +36,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :name, null: false
       t.string :account_id, null: false, unique: true
       t.string :introduction
-      t.integer :profile_image
       t.boolean :is_deleted, null: false, default: false
 
 
