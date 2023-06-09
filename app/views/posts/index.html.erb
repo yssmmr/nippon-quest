@@ -1,2 +1,20 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<h1>投稿一覧</h1>
+
+<%= search_form_for @q, url: posts_path do |f| %>
+  <%= f.select :post_eq,Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
+              { include_blank: t('都道府県') },
+              { class: 'form-control mr-1' } %>
+<% end %>
+
+
+
+<% @posts.each do |post| %>
+  <%= image_tag post.image %>
+  <div><%= post.user.name %><div>
+  <%= post.user.account_id %>
+  <%= post.location_name %>
+  <%= post.address %>
+  <%= post.memo %>
+  <%= post.prefecture_i18n %>
+  <%= post.location_genre_i18n %>
+<% end %>
