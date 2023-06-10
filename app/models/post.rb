@@ -30,4 +30,12 @@ class Post < ApplicationRecord
 
   enum location_genre: { restarant: 0, location: 1 }
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["address", "created_at", "id", "latitude", "location_genre", "location_name", "longitude", "memo", "prefecture", "updated_at", "user_id"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["favorites", "image_attachment", "image_blob", "notifications", "user"]
+  end
+
 end
