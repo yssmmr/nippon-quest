@@ -4,6 +4,8 @@ class PostsController < ApplicationController
   end
 
   def index
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true).order(created_at: :desc)
 
   end
 
