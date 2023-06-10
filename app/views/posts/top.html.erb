@@ -1,10 +1,15 @@
 <h1>ログインユーザーの投稿一覧</h1>
 
 <% @posts.each do |post| %>
-  <%= image_tag post.image %>
-  <div><%= post.user.name %><div>
-  <%= post.user.account_id %>
-  <%= post.location_name %>
-  <%= post.address %>
-  <%= post.memo %>
+  <div>
+    <%= image_tag post.image,size: "400x300" %>
+    <%= post.location_name %>
+    <%= post.address %>
+    <%= post.memo %>
+  </div>
+  <div>
+    <%= post.user.name %>
+    <%= post.user.account_id %>
+  <div>
+
 <% end %>
