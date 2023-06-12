@@ -27,6 +27,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @posts = Post.find(params[:id])
   end
 
   def update
@@ -36,6 +37,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   private
