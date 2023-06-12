@@ -3,7 +3,7 @@
 <%= form_with model: @post do |f| %>
 
   <%= f.label :location_name, "場所名" %><br />
-  <%= f.text_field :location_name, placeholder:@post.location_name %><br />
+  <%= f.text_field :location_name %><br />
 
   <%= f.label :prefecture, "都道府県" %><br />
   <%= f.select :prefecture, Post.prefectures.keys.map {|k| [I18n.t("enums.post.prefecture.#{k}"), k]}, include_blank: "--選択して下さい--" %><br />
