@@ -37,5 +37,9 @@ class Post < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     ["favorites", "image_attachment", "image_blob", "notifications", "user"]
   end
+  
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
 
 end
