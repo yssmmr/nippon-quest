@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :posts
   root 'posts#top'
+    resource :favorites, only: [:create, :destroy]
 
   resources :users, only: [:show, :edit, :update, :destroy]
 
