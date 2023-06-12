@@ -1,2 +1,16 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<h1>投稿詳細</h1>
+
+  <div><%= image_tag @post.image,size: "400x300" %></div>
+
+    <div><%= @post.user.name %></div>
+    <div><%= @post.location_name %></div>
+    <div><%= @post.prefecture_i18n %></div>
+    <div><%= @post.address %></div>
+    <div><%= @post.location_genre_i18n %></div>
+    <div><%= @post.memo %></div>
+
+
+  <!--googleマップでピン止め、マップ表示-->
+
+<%= link_to "編集", edit_post_path(@post.id) %>
+<%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
