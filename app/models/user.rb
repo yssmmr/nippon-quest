@@ -7,9 +7,9 @@ class User < ApplicationRecord
   has_one_attached :profile_image
 
   has_many :posts, dependent: :destroy
-  has_many :relationships, dependent: :destroy
-  has_many :favorites, dependent: :destroy
-  has_many :notifications, dependent: :destroy
+  # has_many :relationships, dependent: :destroy
+  # has_many :favorites, dependent: :destroy
+  # has_many :notifications, dependent: :destroy
 
 
   validates :account_id, length: { in: 6..12 }, format: { with: /\A[0-9a-zA-Z]*\z/ }
