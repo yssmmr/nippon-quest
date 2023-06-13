@@ -1,0 +1,19 @@
+<p>お気に入り投稿一覧</p>
+
+<% @favorite_posts.each do |post| %>
+  <%= image_tag post.image,size: "600x400" %>
+  <%= post.location_name %>
+  <%= post.address %>
+  <%= post.memo %>
+  <%= post.prefecture_i18n %>
+  <%= post.location_genre_i18n %>
+
+  <div>
+    <%= post.user.name %>
+    <%= post.user.account_id %>
+
+
+  </div>
+
+<% end %>
+
