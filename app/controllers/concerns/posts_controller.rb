@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+
   def top
     @posts = current_user.posts
   end
@@ -52,9 +53,15 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def favorite
+    favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+  end
+
   private
 
   def post_params
     params.require(:post).permit(:user_id, :image, :location_name, :address, :latitude, :longitude, :memo, :prefecture, :location_genre)
   end
+
 end
