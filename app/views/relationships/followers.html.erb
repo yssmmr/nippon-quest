@@ -1,0 +1,14 @@
+<h1>フォロワー一覧</h1>
+<p><%= @user.followers.count %>人</p>
+
+<% if @users.exists? %>
+  <% @users.each do |user| %>
+    <p><%= image_tag user.profile_image,size: "200×100" %></p>
+    <p><%= user.name %></p>
+    <p><%= user.account_id %></p>
+  <% end %>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>
+
+
