@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
@@ -34,7 +35,12 @@ class UsersController < ApplicationController
     @user.update(is_deleted: true)
     sign_out
     redirect_to about_path
+  end
 
+
+  def search
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true).order(created_at: :desc)
   end
 
   private
