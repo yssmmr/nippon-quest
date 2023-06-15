@@ -15,7 +15,7 @@
 
 <% @posts.each do |post| %>
   <div>
-    <%= image_tag post.image,size: "600x400" %>
+    <%= image_tag post.get_image,size: "600x400" %>
     <%= post.location_name %>
     <%= post.address %>
     <%= post.memo %>

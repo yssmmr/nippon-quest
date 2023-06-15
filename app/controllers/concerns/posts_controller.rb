@@ -58,6 +58,8 @@ class PostsController < ApplicationController
     @favorite_posts = Post.find(favorites)
   end
 
+
+
   private
 
   def post_params

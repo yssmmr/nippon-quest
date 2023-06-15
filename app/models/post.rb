@@ -42,4 +42,12 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+
+  def get_image
+    if image.attached?
+      image
+    else
+       'no-image.jpg'
+    end
+  end
 end
