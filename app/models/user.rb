@@ -49,4 +49,17 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["account_id", "created_at", "email", "encrypted_password", "id", "introduction", "is_deleted", "name", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at"]
+  end
+
+  def get_profile_image
+
+    if profile_image.attached?
+      profile_image
+    else
+       'no-image.jpg'
+    end
+  end
+
 end
