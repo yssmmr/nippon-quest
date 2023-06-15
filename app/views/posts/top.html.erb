@@ -2,7 +2,7 @@
 
 <% @posts.each do |post| %>
   <div>
-    <%= image_tag post.image,size: "400x300" %>
+    <%= image_tag post.get_image,size: "400x300" %>
     <%= post.location_name %>
     <%= post.address %>
     <%= post.memo %>
