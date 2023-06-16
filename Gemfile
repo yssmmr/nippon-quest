@@ -61,3 +61,6 @@ gem 'enum_help'
 gem 'image_processing','~> 1.2'
 
 gem 'ransack'
+
+gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
+gem 'jcanvas-rails', '~> 0.1.0'
