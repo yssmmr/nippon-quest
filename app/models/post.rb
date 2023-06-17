@@ -28,7 +28,7 @@ class Post < ApplicationRecord
                      kumamoto: 42, oita: 43, miyazaki: 44, kagoshima:45, okinawa:46
                     }
 
-  enum location_genre: { restarant: 0, location: 1 }
+  enum location_genre: { food: 0, location: 1 }
 
   def self.ransackable_attributes(auth_object = nil)
     ["address", "created_at", "id", "latitude", "location_genre", "location_name", "longitude", "memo", "prefecture", "updated_at", "user_id"]
