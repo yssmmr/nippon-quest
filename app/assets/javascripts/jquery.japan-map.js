@@ -40,7 +40,7 @@
             areaNameType        : "full",
             areas               : definition_of_allJapan,
             prefectures         : definition_of_prefectures,
-            movesIslands        : false,          //  Moves Nansei Islands (Okinawa and part of Kagishima) to the left-top space.
+            movesIslands        : true,          //  Moves Nansei Islands (Okinawa and part of Kagishima) to the left-top space.
             font                : "Arial",
             fontSize            : null,
             fontColor           : null,
