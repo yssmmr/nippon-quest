@@ -1,7 +1,7 @@
 
 
   <%= @user.introduction %>
-  <%= image_tag @user.profile_image %>
+  <%= image_tag @user.get_profile_image %>
   <%= @user.name %>
   <%= @user.account_id %>
   <p>行った件数〇/47県</p>
@@ -20,8 +20,8 @@
   <h2><%= @user.name %>さんの投稿一覧</h2>
 
 <% @posts.each do |post| %>
-  <%= image_tag post.image %>
-  <%= post.user.name %>
+  <%= image_tag post.get_image %>
+  <%= link_to post.user.name, user_path(post.user.id) %>
   <%= post.user.account_id %>
   <%= post.location_name %>
   <%= post.address %>
