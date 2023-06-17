@@ -1,8 +1,8 @@
 <h1>投稿詳細</h1>
 
-  <div><%= image_tag @post.image,size: "400x300" %></div>
+  <div><%= image_tag @post.get_image,size: "400x300" %></div>
 
-    <div><%= @post.user.name %></div>
+    <div><%= link_to @post.user.name, user_path(@post.user.id)  %></div>
     <div><%= @post.location_name %></div>
     <div><%= @post.prefecture_i18n %></div>
     <div><%= @post.address %></div>
@@ -12,5 +12,7 @@
 
   <!--googleマップでピン止め、マップ表示-->
 
-<%= link_to "編集", edit_post_path(@post.id) %>
-<%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<% if @post.user == current_user %>
+  <%= link_to "編集", edit_post_path(@post.id) %>
+  <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<% end %>

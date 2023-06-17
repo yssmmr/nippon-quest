@@ -16,7 +16,7 @@
 <% @posts.each do |post| %>
   <div>
     <%= image_tag post.get_image,size: "600x400" %>
-    <%= post.location_name %>
+    <%= link_to post.location_name, post_path(post.id) %>
     <%= post.address %>
     <%= post.memo %>
     <%= post.prefecture_i18n %>
@@ -39,7 +39,7 @@
   </div>
 
   <div>
-    <%= post.user.name %>
+    <%=  link_to post.user.name, user_path(post.user.id) %>
     <%= post.user.account_id %>
   </div>
 
