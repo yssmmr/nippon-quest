@@ -2,6 +2,12 @@ class PostsController < ApplicationController
 
   def top
     @posts = current_user.posts
+
+    @map_prefs = []
+    @posts.pluck(:prefecture).uniq.each do |pref|
+      @map_prefs << Post.prefectures[pref]
+    end
+
   end
 
   def index
