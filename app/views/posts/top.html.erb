@@ -1,18 +1,21 @@
-
-<script src="//code.jquery.com/jquery-1.12.0.js"></script>
 <%= javascript_include_tag 'jquery.japan-map.js' %>
-  <script>
+<script>
+  let areas = [
+      <% (0..46).each do |i| %>
+        {code: <%= i + 1 %>, color: '<%= @map_prefs.include?(i) ? '#D45D70' : '#f0f0f0' %>', prefectures: [<%= i + 1 %>]},
+      <% end %>
+    ]
   $(function(){
     $("#map-container").japanMap({
-        width:1200,
-        onSelect : function(data){
-            alert(data.name);
-        }
+        width: 1000,
+        areas :areas
       });
   });
-  </script>
+</script>
 
-  <div id="map-container"></div>
+<div id="map-container"></div>
+
+
 
 
 
