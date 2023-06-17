@@ -7,7 +7,7 @@
 
   <p>訪れた県： <%= @user.posts.group(:prefecture).count.keys.size %>/47県</p>
   <p>場所　<%= @user.posts.group(:location_genre).count["location"] || 0 %>件</p>
-  <P>飲食店　<%= @user.posts.group(:location_genre).count["restarant"] ||0 %>件</P>
+  <P>グルメ　<%= @user.posts.group(:location_genre).count["food"] ||0 %>件</P>
   <p>フォロー<%= @user.followers.count %>人</p>
   <p>フォロワー<%= @user.followings.count %>人</p>
 
