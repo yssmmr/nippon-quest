@@ -20,6 +20,10 @@
 
   <%= f.label :address, "住所" %><br />
   <%= f.text_field :address %><br />
+  <div id='map'></div>
+
+
+
 
   <!-- googleマップから引っ張ってこれるように！ -->
   <%= f.hidden_field :latitude, value: "1" %>
@@ -31,3 +35,30 @@
   <%= f.submit "新規投稿" %>
 
 <% end %>
+
+
+<style>
+#map {
+  height: 600px;
+  width: 800px;
+}
+</style>
+
+<script>
+let map
+
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 35.709, lng:139.7319},
+    zoom: 12,
+  });
+
+  marker = new google.maps.Marker({
+    position:  {lat: 40.7828, lng:-73.9653},
+    map: map
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgTeNLc165-cfs1Py1tbvvfjXe2YNukGE&callback=initMap" async defer></script>
