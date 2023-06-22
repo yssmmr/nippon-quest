@@ -10,9 +10,40 @@
     <div><%= @post.memo %></div>
 
 
+    <div id='map'></div>
+
+    <style>
+      #map {
+        height: 400px;
+        width: 600px;
+      }
+    </style>
+
+
   <!--googleマップでピン止め、マップ表示-->
 
 <% if @post.user == current_user %>
   <%= link_to "編集", edit_post_path(@post.id) %>
   <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 <% end %>
+
+
+<script>
+//初期マップの設定
+let map
+let marker
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+    zoom: 15,
+  });
+
+   marker = new google.maps.Marker({
+    position:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+    map: map
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgTeNLc165-cfs1Py1tbvvfjXe2YNukGE&callback=initMap" async defer></script>
