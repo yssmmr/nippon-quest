@@ -23,9 +23,9 @@
 
 
 
-  <input id="input_address" type="textbox" value="GeekSalon">
-<input type="button" value="検索" onclick="codeAddress()">
-<p>※マーカーをドラック＆ドロップで位置の調整ができます。<p>
+  <input id="input_address" type="textbox"  placeholder="住所、場所名">
+  <input type="button" value="検索" onclick="codeAddress()">
+  <p>※マーカーをドラック＆ドロップで位置の調整ができます。<p>
 
 
 
@@ -35,14 +35,6 @@
   <%= f.text_field :longitude,:value =>"経度", id: :lng %>
 
   <div id='map'></div>
-
-
-
-
-  <!-- googleマップから引っ張ってこれるように！ -->
-  <!--</%= f.hidden_field :latitude, value: "1" %>-->
-  <!--</%= f.hidden_field :longitude, value: "1" %>-->
-
 
 
 
@@ -60,6 +52,7 @@
 </style>
 
 <script>
+
 //初期マップの設定
 let map
 let marker
