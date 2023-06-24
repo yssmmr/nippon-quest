@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @q = Post.ransack(params[:q])
+    @q = Post.ransack(params[:q].merge({released: true}))
     @posts = @q.result(distinct: true).order(created_at: :desc)
 
   end
@@ -72,7 +72,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :image, :location_name, :address, :latitude, :longitude, :memo, :prefecture, :location_genre)
+    params.require(:post).permit(:user_id, :image, :location_name, :address, :latitude, :longitude, :memo, :prefecture, :location_genre, :is_released)
   end
 
 end
