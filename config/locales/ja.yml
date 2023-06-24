@@ -239,3 +239,6 @@ ja:
         food: "グルメ"
         location: "場所"
 
+      is_released:
+        released: "公開"
+        private: "非公開"
