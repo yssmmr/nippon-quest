@@ -17,11 +17,20 @@
   <%= f.label :memo, "メモ" %><br />
   <%= f.text_area :memo %><br />
 
+  <%= f.radio_button :is_released, Post.is_releaseds.key(0) %>
+  <%= f.label :is_released_released, Post.is_releaseds_i18n[:released] %>
+
+
+  <%= f.radio_button :is_released, Post.is_releaseds.key(1) %>
+  <%= f.label :is_released_private, Post.is_releaseds_i18n[:private] %>
+
+
+
 
   <%= f.label :address, "住所" %><br />
   <%= f.text_field :address %><br />
 
-  <!-- googleマップから引っ張ってこれるように！ -->
+
   <input id="input_address" type="textbox"  placeholder="住所、場所名">
   <input type="button" value="検索" onclick="codeAddress()">
   <p>※マーカーをドラック＆ドロップで位置の調整ができます。<p>
