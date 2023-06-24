@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @q = Post.ransack(params[:q])
+    @q = Post.ransack(params[:q].merge({released: true}))
     @posts = @q.result(distinct: true).order(created_at: :desc)
 
   end
