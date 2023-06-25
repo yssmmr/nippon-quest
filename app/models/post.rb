@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
 
   belongs_to :user
-  # has_many :notifications, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   has_one_attached :image
 
@@ -88,6 +88,27 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+
+  def create_notification_favorite!(current_user)
+
+    #すでにいいねされているか検索
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favolite'])
+
+    #いいねされていない場合のみ、通知レコードを作成
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        post_id: id,
+        visited_id: user_id,
+        action: "notification"
+      )
+
+    #自分の投稿に対するいいねの場合は通知済みとする
+      if notification.visitor_id == notification.visited_id
+        notification.checked = true
+      end
+      notification.save if notification.valid?
+    end
+  end
 
   def get_image
     if image.attached?
