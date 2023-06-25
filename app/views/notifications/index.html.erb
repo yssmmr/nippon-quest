@@ -1,0 +1,16 @@
+<h2>通知一覧</h2>
+
+　<%= link_to notifications_destroy_all_path, method: :delete do %>
+　  <h7>全削除</h7>
+　<% end %>
+
+<% @notifications.each do |notification| %>
+　 <%= link_to user_path(notification.visitor_id) do %>
+　   <%= image_tag notification.visitor.get_profile_image, size: "400×300" %>
+　 <% end %>
+　 <%= notification_form(notification) %>
+<% end %>
+
+<% if @notifications.blank? %>
+　 <p>通知はありません</p>
+<% end %>

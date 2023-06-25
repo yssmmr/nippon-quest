@@ -26,5 +26,8 @@ Rails.application.routes.draw do
 
   get '/about' => 'homes#about'
 
+  resources :notifications, only: [:index]
+  delete 'notifications/destroy_all' => 'notifications#destroy_all'
+
 
 end
