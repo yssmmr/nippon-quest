@@ -17,9 +17,19 @@
 
 
 
-
+  <% if unchecked_notifications.any? %>
+    <%= link_to notifications_path(current_user) do %>
+      <%= image_tag "notifications" %>
+    <% end %>
+  <% else %>
+    <%= link_to notifications_path(current_user) do %>
+      <%= image_tag "no-notifications" %>
+    <% end %>
+  <% end %>
 
 <h1>ログインユーザーの投稿一覧</h1>
+
+
 
 <%= search_form_for @q, url: posts_path do |f| %>
   <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
