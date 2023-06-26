@@ -1,16 +1,30 @@
-<div><%= image_tag "NIPPONQUESTロゴ.png" %></div>
-<h2>次はどこへ行く？何をする？</h2>
+<div class="container text-center">
 
-<div><%= image_tag "about_comment1.png" %></div>
-<div><%= image_tag "about_comment2.png" %></div>
+<div class="row justify-content-center">
+    <div><%= image_tag "NIPPONQUESTロゴ.png" %></div>
+    <h1>次はどこへ行く？何をする？</h1>
+</div>
+<div>
+    <div class="row justify-content-center"><%= image_tag "about_comment1.png" %></div>
+    <div class="row justify-content-center"><%= image_tag "about_comment2.png" %></div>
+</div>
+    <h3 class="mt-5">そんな悩みを解決する、訪れた場所の思い出を記録・みんなと共有できるアプリです。</h3>
 
-<p>そんな悩みを叶える、訪れた場所の思い出を記録・みんなと共有できるアプリです。</p>
 
+    <h1 class="mt-5 mb-5">新しい場所へ冒険してみませんか？</h1>
+<div class="row justify-content-around">
+    <%= link_to new_user_registration_path do %>
+      <%= image_tag "新規会員登録", size: "170x100"%>
+    <% end %>
+    <%= link_to new_user_session_path do %>
+      <%= image_tag "ログイン", size: "170x100" %>
+    <% end %>
+    <%= link_to users_guest_sign_in_path, method: :post do %>
+      <%= image_tag "ゲストログイン", size: "170x100" %>
+    <% end %>
 
-<h3>新しい場所へ冒険してみませんか？</h3>
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+</div>
 
-<%= link_to "新規会員登録", new_user_registration_path  %>
-<%= link_to "ログイン", new_user_session_path %>
-<%= link_to "試しに使ってみる", users_guest_sign_in_path, method: :post %>
-
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+</div>
+</div>
