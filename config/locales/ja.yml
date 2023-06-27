@@ -3,6 +3,7 @@ ja:
     attributes:
       user:
         account_id: "ユーザーID"
+        name: "名前"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
