@@ -42,7 +42,7 @@
             prefectures         : definition_of_prefectures,
             movesIslands        : true,          //  Moves Nansei Islands (Okinawa and part of Kagishima) to the left-top space.
             font                : "MS Gothic",
-            fontSize            : 15,
+            fontSize            : 11,
             fontColor           : "#000000",
             fontShadowColor     : null,
             onSelect            : function(){},

@@ -1,57 +1,63 @@
-<%= javascript_include_tag 'jquery.japan-map.js' %>
-<script>
-  let areas = [
-      <% (0..46).each do |i| %>
-        {code: <%= i + 1 %>, color: '<%= @map_prefs.include?(i) ? '#D45D70' : '#f0f0f0' %>', prefectures: [<%= i + 1 %>]},
+<div class="container text-center">
+
+  <%= javascript_include_tag 'jquery.japan-map.js' %>
+  <script>
+    let areas = [
+        <% (0..46).each do |i| %>
+          {code: <%= i + 1 %>, color: '<%= @map_prefs.include?(i) ? '#D45D70' : '#f0f0f0' %>', prefectures: [<%= i + 1 %>]},
+        <% end %>
+      ]
+    $(function(){
+      $("#map-container").japanMap({
+          width: 800,
+          areas :areas
+        });
+    });
+  </script>
+
+  <div id="map-container"></div>
+
+
+
+    <% if unchecked_notifications.any? %>
+      <%= link_to notifications_path(current_user) do %>
+        <%= image_tag "notifications" %>
       <% end %>
-    ]
-  $(function(){
-    $("#map-container").japanMap({
-        width: 1000,
-        areas :areas
-      });
-  });
-</script>
-
-<div id="map-container"></div>
-
-
-
-  <% if unchecked_notifications.any? %>
-    <%= link_to notifications_path(current_user) do %>
-      <%= image_tag "notifications" %>
+    <% else %>
+      <%= link_to notifications_path(current_user) do %>
+        <%= image_tag "no-notifications" %>
+      <% end %>
     <% end %>
-  <% else %>
-    <%= link_to notifications_path(current_user) do %>
-      <%= image_tag "no-notifications" %>
-    <% end %>
-  <% end %>
 
-<h1>ログインユーザーの投稿一覧</h1>
+  <div class="row justify-content-between">
+    <h2><%= current_user.name %>の投稿一覧</h2>
+      <%= search_form_for @q, url: posts_path do |f| %>
+        <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
+                    { include_blank: t('--都道府県--') } %>
 
+        <%= f.select :location_genre_eq, Post.location_genres_i18n.invert.map{|key, value| [key, Post.location_genres[value]]},
+                    { include_blank: t('--場所ジャンル--') } %>
+        <%= image_submit_tag "検索" %>
 
-
-<%= search_form_for @q, url: posts_path do |f| %>
-  <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
-              { include_blank: t('--都道府県--') } %>
-
-  <%= f.select :location_genre_eq, Post.location_genres_i18n.invert.map{|key, value| [key, Post.location_genres[value]]},
-              { include_blank: t('--場所ジャンル--') } %>
-
-  <%= f.submit "検索" %>
-
-<% end %>
-
-<% @posts.each do |post| %>
-  <div>
-    <%= image_tag post.get_image,size: "400x300" %>
-    <%= link_to post.location_name, post_path(post.id) %>
-    <%= post.address %>
-    <%= post.memo %>
+      <% end %>
   </div>
-  <div>
-    <%= link_to post.user.name, user_path(post.user.id) %>
-    <%= post.user.account_id %>
-  <div>
 
-<% end %>
+
+
+  <% @posts.each do |post| %>
+    <div class="row">
+      <div class="col-5">
+        <%= image_tag post.get_image,size: "400x300" %>
+        <h5><%= link_to post.user.name, user_path(post.user.id) %>@<%= post.user.account_id %></h5>
+
+      </div>
+      <div class="col-6 align-self-center">
+        <h5>▷<%= link_to post.location_name, post_path(post.id) %></h5>
+
+        <h5>▷<%= post.address %></h5>
+        <h5>▷<%= post.memo %></h5>
+      </div>
+    </div>
+
+  <% end %>
+</div>
