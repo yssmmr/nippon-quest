@@ -29,7 +29,7 @@
       <% end %>
     <% end %>
 
-  <div class="row justify-content-between">
+  <div class="row justify-content-around">
     <h2><%= current_user.name %>の投稿一覧</h2>
       <%= search_form_for @q, url: root_path, id: 'search_form' do |f| %>
         <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
@@ -48,10 +48,10 @@
 
 
   <% @posts.each do |post| %>
-    <div class="row">
+    <div class="row border mt-4">
       <div class="col-5">
-        <%= image_tag post.get_image,size: "400x300" %>
-        <h5><%= link_to post.user.name, user_path(post.user.id) %>@<%= post.user.account_id %></h5>
+        <%= image_tag post.get_image,size: "300x200",class:"mt-4 mb-2"%>
+        <h6><%= link_to post.user.name, user_path(post.user.id) %>@<%= post.user.account_id %></h6>
 
       </div>
       <div class="col-6 align-self-center">
