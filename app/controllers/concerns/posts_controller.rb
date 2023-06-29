@@ -1,16 +1,18 @@
 class PostsController < ApplicationController
 
   def top
-    @posts = current_user.posts
+    @q = Post.ransack(params[:q])
+
+    if params[:q].blank?
+      @posts = current_user.posts
+    else
+      @posts = @q.result(distinct: true).where(user_id: current_user.id).order(created_at: :desc)
+    end
 
     @map_prefs = []
     @posts.pluck(:prefecture).uniq.each do |pref|
       @map_prefs << Post.prefectures[pref]
     end
-
-    @q = Post.ransack(params[:q])
-    @post = @q.result(distinct: true).order(created_at: :desc)
-
   end
 
   def index
