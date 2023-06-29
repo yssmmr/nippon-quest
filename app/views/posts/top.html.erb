@@ -31,13 +31,16 @@
 
   <div class="row justify-content-between">
     <h2><%= current_user.name %>の投稿一覧</h2>
-      <%= search_form_for @q, url: posts_path do |f| %>
+      <%= search_form_for @q, url: root_path, id: 'search_form' do |f| %>
         <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
                     { include_blank: t('--都道府県--') } %>
 
         <%= f.select :location_genre_eq, Post.location_genres_i18n.invert.map{|key, value| [key, Post.location_genres[value]]},
                     { include_blank: t('--場所ジャンル--') } %>
-        <%= image_submit_tag "検索" %>
+
+        <%= link_to "", onclick: "$('#search_form').submit()" do %>
+          <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
+        <% end %>
 
       <% end %>
   </div>
