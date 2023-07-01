@@ -25,13 +25,13 @@
 
     <div class="row justify-content-around">
         <%= link_to new_user_registration_path do %>
-          <%= image_tag "新規会員登録", size: "170x100"%>
+          <%= image_tag "新規会員登録.png"%>
         <% end %>
         <%= link_to new_user_session_path do %>
-          <%= image_tag "ログイン", size: "170x100" %>
+          <%= image_tag "ログイン.png" %>
         <% end %>
         <%= link_to users_guest_sign_in_path, method: :post do %>
-          <%= image_tag "ゲストログイン", size: "170x100" %>
+          <%= image_tag "ゲストログイン.png" %>
         <% end %>
 
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
