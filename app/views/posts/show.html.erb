@@ -1,37 +1,47 @@
 
 <div class="container text-center">
 
-  <h2 class="pt-5 pb-5">投稿詳細</h2>
+  <h2 class="pt-5 pb-4">投稿詳細</h2>
 
     <div class="pb-4"><%= image_tag @post.get_image,size: "400x300" %></div>
 
-      <div><%= link_to @post.user.name, user_path(@post.user.id) %>@<%= @post.user.account_id %></div>
-      <div>▷場所名：<%= @post.location_name %></div>
-      <div>▷都道府県：<%= @post.prefecture_i18n %></div>
+      <div class="mb-3"><%= link_to @post.user.name, user_path(@post.user.id) %>@<%= @post.user.account_id %></div>
+      <div>▷場所名： <%= @post.location_name %></div>
+      <div>▷都道府県： <%= @post.prefecture_i18n %></div>
 
-      <div>▷ジャンル：<%= @post.location_genre_i18n %></div>
-      <div>▷メモ：<%= @post.memo %></div>
-      <div>▷緯度：<%= @post.latitude %></div>
-      <div>▷経度：<%= @post.longitude %></div>
+      <div>▷ジャンル： <%= @post.location_genre_i18n %></div>
+      <div>▷メモ： <%= @post.memo %></div>
 
 
-      <div>▷住所：<%= @post.address %></div>
-      <div id='map'></div>
+
+      <div class="mt-3">▷住所： <%= @post.address %></div>
+      <div>▷緯度： <%= @post.latitude %></div>
+      <div>▷経度： <%= @post.longitude %></div>
+
+      <div class="row mt-4 mb-4">
+        <div id='map' style="margin:0 auto;"></div>
+      </div>
 
       <style>
         #map {
           height: 400px;
           width: 600px;
+
         }
       </style>
 
 
-    <!--googleマップでピン止め、マップ表示-->
-
   <% if @post.user == current_user %>
-    <%= link_to "編集", edit_post_path(@post.id) %>
-    <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+
+    <%= link_to edit_post_path(@post.id) do %>
+      <%= image_tag "編集.png" %>
+    <% end %>
+
+    <%= link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+      <%= image_tag "削除.png" %>
+    <% end %>
   <% end %>
+
 
 </div>
 
