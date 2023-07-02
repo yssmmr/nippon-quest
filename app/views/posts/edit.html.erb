@@ -35,7 +35,9 @@
 
     <div class="mb-4">
       <input id="input_address" type="textbox"  placeholder="住所、場所名">
-      <input type="button" value="検索" onclick="codeAddress()">
+       <%= link_to "", onclick: "$('#search_form').submit()" do %>
+          <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
+        <% end %>
     </div>
 
     <div class="mb-4">
