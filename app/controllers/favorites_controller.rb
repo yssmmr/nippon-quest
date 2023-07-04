@@ -6,7 +6,7 @@ class FavoritesController < ApplicationController
     favorite = current_user.favorites.new(post_id: post.id)
     favorite.save
 
-    post.create_notification_favolite!(current_user)
+    post.create_notification_favorite!(current_user)
 
     redirect_to posts_path
   end

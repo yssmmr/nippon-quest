@@ -68,8 +68,8 @@ class Post < ApplicationRecord
 
   enum location_genre: { food: 0, location: 1 }
 
-  enum is_released: { released: 0, private: 1}, _prefix: true
-  scope :released, ->{where(is_released: Post.is_releaseds[:released])}
+  enum is_released: { released: 0, not_released: 1}
+
 
   def self.ransackable_scopes(auth_object = nil)
     ["released"]

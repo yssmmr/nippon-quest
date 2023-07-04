@@ -1,47 +1,68 @@
-<h1>投稿一覧</h1>
 
-<%= search_form_for @q, url: posts_path do |f| %>
-  <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
-              { include_blank: t('--都道府県--') } %>
+<div class="container text-center">
 
-  <%= f.select :location_genre_eq, Post.location_genres_i18n.invert.map{|key, value| [key, Post.location_genres[value]]},
-              { include_blank: t('--場所ジャンル--') } %>
+  <h1 class="pt-5 mb-4">投稿一覧</h1>
 
-  <%= f.submit "検索" %>
+  <div class="row justify-content-end">
 
-<% end %>
+    <%= search_form_for @q, url: posts_path do |f| %>
+      <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
+                  { include_blank: t('--都道府県--') } %>
 
+      <%= f.select :location_genre_eq, Post.location_genres_i18n.invert.map{|key, value| [key, Post.location_genres[value]]},
+                  { include_blank: t('--場所ジャンル--') } %>
 
-
-<% @posts.each do |post| %>
-  <div>
-    <%= image_tag post.get_image,size: "600x400" %>
-    <%= link_to post.location_name, post_path(post.id) %>
-    <%= post.address %>
-    <%= post.memo %>
-    <%= post.prefecture_i18n %>
-    <%= post.location_genre_i18n %>
-
-    <% if post.favorited_by?(current_user) %>
-      <p>
-        <%= link_to post_favorites_path(post), method: :delete do %>
-        ★<%= post.favorites.count %>
-        <% end %>
-      </p>
-      <% else %>
-      <p>
-        <%= link_to post_favorites_path(post),method: :post do %>
-        ☆<%= post.favorites.count %>
-        <% end %>
-      </p>
+      <%= link_to "", onclick: "$('#search_form').submit()" do %>
+        <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
       <% end %>
 
-  </div>
 
-  <div>
-    <%=  link_to post.user.name, user_path(post.user.id) %>
-    <%= post.user.account_id %>
+    <% end %>
   </div>
 
 
-<% end %>
+
+  <% @posts.each do |post| %>
+    <div class="row border mt-4">
+      <div class="col-5">
+        <%= image_tag post.get_image,size: "300x200", class:"mt-4 mb-2" %>
+        <div class="mb-3">
+         <%= image_tag post.user.get_profile_image, size: "60x60" ,class:"rounded-circle" %>
+         <%=  link_to post.user.name, user_path(post.user.id) %> @<%= post.user.account_id %>
+        </div>
+      </div>
+
+        <div class="col-6 align-self-center">
+          <h6>▷<%= link_to post.location_name, post_path(post.id) %></h6>
+
+          <h6>▷<%= post.address %></h6>
+          <h6>▷<%= post.memo %></h6>
+          <%= post.prefecture_i18n %>
+          <%= post.location_genre_i18n %>
+        </div>
+
+          <% if post.favorited_by?(current_user) %>
+
+          <div class="col-1 mt-4">
+            <%= link_to post_favorites_path(post), method: :delete do %>
+             <%= image_tag "いいねon.png", size: "30x30" %><%= post.favorites.count %>
+            <% end %>
+          </div>
+
+          <% else %>
+
+          <div class="col-1 mt-4">
+            <%= link_to post_favorites_path(post),method: :post do %>
+             <%= image_tag "いいねoff.png", size: "30x30" %><%= post.favorites.count %>
+            <% end %>
+          </div>
+          <% end %>
+
+      </div>
+
+
+
+
+  <% end %>
+
+</div>
