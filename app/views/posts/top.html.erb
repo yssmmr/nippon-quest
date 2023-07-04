@@ -51,8 +51,10 @@
     <div class="row border mt-4">
       <div class="col-5">
         <%= image_tag post.get_image,size: "300x200",class:"mt-4 mb-2"%>
-        <div class="mb-3"><%= image_tag post.user.get_profile_image, size: "60x60" ,class:"rounded-circle" %>
-        <%= link_to post.user.name, user_path(post.user.id) %>@<%= post.user.account_id %></div>
+        <div class="mb-3">
+          <%= image_tag post.user.get_profile_image, size: "60x60" ,class:"rounded-circle" %>
+          <%= link_to post.user.name, user_path(post.user.id) %>@<%= post.user.account_id %>
+        </div>
 
       </div>
       <div class="col-6 align-self-center">
