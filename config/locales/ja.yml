@@ -242,4 +242,4 @@ ja:
 
       is_released:
         released: "公開"
-        private: "非公開"
+        not_released: "非公開"
