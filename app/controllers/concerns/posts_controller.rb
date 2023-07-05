@@ -4,9 +4,9 @@ class PostsController < ApplicationController
     @q = Post.ransack(params[:q])
 
     if params[:q].blank?
-      @posts = current_user.posts
+      @posts = current_user.posts.page(params[:page])
     else
-      @posts = @q.result(distinct: true).where(user_id: current_user.id).order(created_at: :desc)
+      @posts = @q.result(distinct: true).where(user_id: current_user.id).order(created_at: :desc).page(params[:page])
     end
 
     @map_prefs = []
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   def index
 
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).released.order(created_at: :desc)
+    @posts = @q.result(distinct: true).released.order(created_at: :desc).page(params[:page])
 
   end
 

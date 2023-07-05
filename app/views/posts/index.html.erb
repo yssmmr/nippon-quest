@@ -16,7 +16,6 @@
         <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
       <% end %>
 
-
     <% end %>
   </div>
 
@@ -30,7 +29,7 @@
          <%= image_tag post.user.get_profile_image, size: "60x60" ,class:"rounded-circle" %>
          <%=  link_to post.user.name, user_path(post.user.id) %> <%= post.user.account_id %>
 
-         <% if post.location_genre[0] %>
+         <% if post.food? %>
            <%= image_tag "グルメ.png", size: "30x30" %>
          <% else %>
            <%= image_tag "no-image.jpg", size: "30x30" %>
@@ -61,16 +60,13 @@
              <%= image_tag "いいねoff.png", size: "30x30" %><%= post.favorites.count %>
             <% end %>
 
-
           <% end %>
 
          </div>
-
       </div>
 
-
-
-
   <% end %>
+
+  <%= paginate @posts %>
 
 </div>
