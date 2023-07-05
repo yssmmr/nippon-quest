@@ -19,7 +19,7 @@
             <%= image_tag user.get_profile_image, size: "60x60", class:"rounded-circle" %>
           </div>
           <div class="col-8">
-            <p><%= user.name %> @<%= user.account_id %></p>
+            <p><%= user.name %> <%= user.account_id %></p>
             <p><%= user.introduction&.truncate(23) %></p>
           </div>
           </div>
