@@ -26,9 +26,11 @@
     </div>
 
 
-    <div class="mt-4">
+    <div class="row mt-4 justify-content-center">
      <%= image_submit_tag("編集.png") %>
-     <%= link_to "退会", user_path, method: :delete, "data-confirm" => "本当に退会しますか？" %>
+     <%= link_to user_path, method: :delete, "data-confirm" => "本当に退会しますか？" do %>
+       <%= image_tag "退会.png" %>
+     <% end %>
     </div>
 
   <% end %>
