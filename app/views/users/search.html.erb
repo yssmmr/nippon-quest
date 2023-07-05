@@ -1,18 +1,32 @@
 
-<h1>ユーザーを探す</h1>
+<div class="container text-center user-search-page mb-3">
 
-<%= search_form_for @q, url: users_search_path do |f| %>
-  <%= f.search_field :account_id_eq %>
-  <%= f.submit "ユーザー検索" %>
-<% end %>
+  <h1 class="pt-5 mb-4">ユーザーを探す</h1>
+
+  <div class="row justify-content-end">
+    <%= search_form_for @q, url: users_search_path do |f| %>
+      <%= f.search_field :account_id_eq %>
+      <%= f.submit "ユーザー検索" %>
+    <% end %>
+  </div>
 
 
-<% if @users.exists? %>
-  <% @users.each do |user| %>
-    <%= image_tag user.get_profile_image, size: "300x200" %>
-    <p><%= user.name %></p>
-    <p><%= user.account_id %></p>
-  <% end %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+
+    <% if @users.exists? %>
+      <% @users.each do |user| %>
+        <div class="row col-5 p-3 mx-auto border mt-4 info-area">
+          <div class="col-3 align-self-center">
+            <%= image_tag user.get_profile_image, size: "60x60", class:"rounded-circle" %>
+          </div>
+          <div class="col-8">
+            <p><%= user.name %> @<%= user.account_id %></p>
+            <p><%= user.introduction&.truncate(23) %></p>
+          </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="mt-4">ユーザーはいません</p>
+    <% end %>
+
+
+</div>
