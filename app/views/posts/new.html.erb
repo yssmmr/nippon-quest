@@ -19,11 +19,11 @@
 
 
   <%= f.radio_button :is_released, Post.is_releaseds.key(0) %>
-  <%= f.label :is_released_released, Post.is_releaseds_i18n[:released] %>
+  <%= f.label :released, Post.is_releaseds_i18n[:released] %>
 
 
   <%= f.radio_button :is_released, Post.is_releaseds.key(1) %>
-  <%= f.label :is_released_private, Post.is_releaseds_i18n[:private] %></br>
+  <%= f.label :not_released, Post.is_releaseds_i18n[:not_released] %></br>
 
 
   <%= f.label :address, "住所" %><br />
