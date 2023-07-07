@@ -46,35 +46,47 @@
   </div>
 
 
- <% if @posts.any? %>
-    <% @posts.each do |post| %>
-      <div class="row col-9 mx-auto border mt-4 post-info">
-        <div class="col-6">
-          <%= image_tag post.get_image,size: "300x200",class:"mt-4 mb-2"%>
-          <div class="mb-3">
-            <%= image_tag post.user.get_profile_image, size: "60x60" ,class:"rounded-circle" %>
-            <%= link_to post.user.name, user_path(post.user.id) %> <%= post.user.account_id %>
+<% if @posts.any? %>
+      <% @posts.each do |post| %>
+        <div class="row col-9 mx-auto border mt-4">
+          <div class="col-5">
+            <%= image_tag post.get_image,size: "300x200", class:"mt-4 mb-2" %>
+            <div class="mb-3">
+             <%= image_tag post.user.get_profile_image, size: "60x60" ,class:"rounded-circle" %>
+             <%=  link_to post.user.name, user_path(post.user.id) %> <%= post.user.account_id %>
 
-            <% if post.food? %>
-             <%= image_tag "グルメ.png", size: "30x30" %>
-            <% else %>
-             <%= image_tag "場所.png", size: "30x30" %>
-           <% end %>
-
+             <% if post.food? %>
+               <%= image_tag "グルメ.png", size: "30x30" %>
+             <% else %>
+               <%= image_tag "場所.png", size: "30x30" %>
+             <% end %>
+            </div>
           </div>
 
-        </div>
-        <div class="col-6 align-self-center">
-          <h6>▷<%= link_to post.location_name, post_path(post.id) %></h6>
+            <div class="col-6 align-self-center">
+              <h6>▷<%= link_to post.location_name, post_path(post.id) %></h6>
 
-          <h6>▷<%= post.address %></h6>
-          <h6>▷<%= post.memo.truncate(40) %></h6>
-        </div>
-      </div>
+              <h6>▷<%= post.address %></h6>
+              <h6>▷<%= post.memo.truncate(40) %></h6>
+            </div>
+
+             <div class="col-1 mt-4">
+
+              <% if post.favorited_by?(current_user) %>
+                <%= link_to post_favorites_path(post), method: :delete do %>
+                 <%= image_tag "いいねon.png", size: "20x20" %><%= post.favorites.count %>
+                <% end %>
+              <% else %>
+                <%= link_to post_favorites_path(post),method: :post do %>
+                 <%= image_tag "いいねoff.png", size: "20x20" %><%= post.favorites.count %>
+                <% end %>
+              <% end %>
+             </div>
+          </div>
+      <% end %>
+    <% else %>
+      <h4 class="mt-4">投稿はありません。</h4>
     <% end %>
-  <% else %>
-    <h4 class="mt-4">投稿はありません。</h4>
-  <% end %>
 
   <%= paginate @posts %>
 

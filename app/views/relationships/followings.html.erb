@@ -1,13 +1,27 @@
 
-<h1>フォロー一覧</h1>
-<p><%= @user.followings.count %>人</p>
+<div class="container text-center user-search-page">
 
-<% if @users.exists? %>
-  <% @users.each do |user| %>
-    <%= image_tag user.profile_image, size: "300x200" %>
-    <p><%= user.name %></p>
-    <p><%= user.account_id %></p>
-  <% end %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+    <h1 class="pt-5 mb-5">フォロー一覧</h1>
+    <p>合計：<%= @users.count %>人</p>
+
+       <% if @users.exists? %>
+      <% @users.each do |user| %>
+        <div class="row col-5 p-3 mx-auto border mt-4 info-area">
+          <div class="col-3 align-self-center">
+            <%= image_tag user.get_profile_image, size: "60x60", class:"rounded-circle" %>
+          </div>
+
+          <div class="col-8">
+            <p><%= link_to user.name, user_path(user.id) %> <%= user.account_id %></p>
+            <p><%= user.introduction&.truncate(23) %></p>
+          </div>
+        </div>
+        <% end %>
+      <% else %>
+        <p class="mt-5">ユーザーはいません</p>
+    <% end %>
+
+  <!--</%= paginate @users %>-->
+
+
+</div>
