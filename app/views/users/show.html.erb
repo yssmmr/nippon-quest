@@ -1,28 +1,41 @@
 <div class="container text-center user-top-page ">
 
-    <div class="pt-5"><%= @user.introduction %></div>
+      <% if @user.introduction? %>
+      <div class="balloon1">
+        <%= @user.introduction %>
+      </div>
+      <% end %>
+
     <div class="pt-4">
       <%= image_tag @user.get_profile_image,size: "200x150", size: "60x60" ,class:"rounded-circle"  %>
+    </div>
+    <div class="pt-4">
       <%= @user.name %>
       <%= @user.account_id %>
     </div>
-    <p class="mt-4">訪れた県： <%= @user.posts.group(:prefecture).count.keys.size %>/47県</p>
-    <div class="row col-4 mx-auto">
-      <p class="col-6">場所　<%= @user.posts.group(:location_genre).count["location"] || 0 %>件</p>
-      <p class="col-6">グルメ　<%= @user.posts.group(:location_genre).count["food"] ||0 %>件</p>
-    </div>
-    <div class="row col-4 mx-auto">
-      <p class="col-6">フォロー<%= @user.followers.count %>人</p>
-      <p class="col-6">フォロワー<%= @user.followings.count %>人</p>
+    <div class="mt-4">
+       <% unless @user == current_user %>
+          <% if current_user.following?(@user) %>
+            <%= link_to user_relationships_path(@user.id), method: :delete do %>
+              <%= image_tag "フォロー中.png" %>
+            <% end %>
+          <% else %>
+            <%= link_to user_relationships_path(@user.id), method: :post do %>
+              <%= image_tag "フォロー未.png" %>
+            <% end %>
+          <% end %>
+        <% end %>
     </div>
 
-   <% unless @user == current_user %>
-      <% if current_user.following?(@user) %>
-        <%= link_to "フォローを外す", user_relationships_path(@user.id), method: :delete %>
-      <% else %>
-        <%= link_to "フォローする", user_relationships_path(@user.id), method: :post %>
-      <% end %>
-   <% end %>
+    <p class="mt-4">訪れた県： <%= @user.posts.group(:prefecture).count.keys.size %>/47県</p>
+    <div class="row col-4 mx-auto">
+      <p class="col-6"><%= image_tag "場所.png", size: "30x30" %> <%= @user.posts.group(:location_genre).count["location"] || 0 %>件</p>
+      <p class="col-6"><%= image_tag "グルメ.png", size: "30x30" %> <%= @user.posts.group(:location_genre).count["food"] ||0 %>件</p>
+    </div>
+    <div class="row col-4 mx-auto">
+      <p class="col-6">フォロー<%= @user.followings.count %>人</p>
+      <p class="col-6">フォロワー<%= @user.followers.count %>人</p>
+    </div>
 
     <h2 class="mt-5"><%= @user.name %>さんの投稿一覧</h2>
 
