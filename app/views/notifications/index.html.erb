@@ -1,16 +1,24 @@
-<h2>通知一覧</h2>
+<div class="container text-center mb-3">
 
-　<%= link_to notifications_destroy_all_path, method: :delete do %>
-　  <h7>全削除</h7>
-　<% end %>
+  <h1 class="pt-5 pb-4">通知一覧</h1>
 
-<% @notifications.each do |notification| %>
-　 <%= link_to user_path(notification.visitor_id) do %>
-　   <%= image_tag notification.visitor.get_profile_image, size: "400×300" %>
-　 <% end %>
-　 <%= notification_form(notification) %>
-<% end %>
+  　<%= link_to notifications_destroy_all_path, method: :delete do %>
+  　  <h7>全削除</h7>
+  　<% end %>
 
-<% if @notifications.blank? %>
-　 <p>通知はありません</p>
-<% end %>
+
+    <% @notifications.each do |notification| %>
+     <div>
+    　 <%= link_to user_path(notification.visitor_id) do %>
+         <%= image_tag notification.visitor.get_profile_image, size: "60x60" ,class:"rounded-circle" %>
+    　 <% end %>
+    　 <%= notification_form(notification) %>
+    　</div>
+    <% end %>
+
+
+  <% if @notifications.blank? %>
+  　 <p class="pt-5">通知はありません</p>
+  <% end %>
+
+</div>
