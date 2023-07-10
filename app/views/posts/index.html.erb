@@ -25,7 +25,7 @@
         <div class="row col-9 mx-auto border mt-4">
           <div class="col-5">
             <%= image_tag post.get_image,size: "300x200", class:"mt-4 mb-2" %>
-            <div class="mb-3">
+            <h4 class="mb-3">
              <%= image_tag post.user.get_profile_image, size: "60x60" ,class:"rounded-circle" %>
              <%=  link_to post.user.name, user_path(post.user.id) %> <%= post.user.account_id %>
 
@@ -34,14 +34,14 @@
              <% else %>
                <%= image_tag "場所.png", size: "30x30" %>
              <% end %>
-            </div>
+            </h4>
           </div>
 
             <div class="col-6 align-self-center">
-              <h6>▷<%= link_to post.location_name, post_path(post.id) %></h6>
+              <h4>▷<%= link_to post.location_name, post_path(post.id) %></h6>
 
-              <h6>▷<%= post.address %></h6>
-              <h6>▷<%= post.memo.truncate(40) %></h6>
+              <h4>▷<%= post.address %></h4>
+              <h4>▷<%= post.memo.truncate(40) %></h4>
             </div>
 
              <div class="col-1 mt-4">
@@ -62,6 +62,7 @@
       <h4 class="mt-4">投稿はありません。</h4>
     <% end %>
 
-  <%= paginate @posts %>
-
+  <div class="row justify-content-center">
+    <%= paginate @posts %>
+  </div>
 </div>

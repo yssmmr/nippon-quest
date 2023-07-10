@@ -3,7 +3,7 @@
   <h1 class="pt-5 pb-4">通知一覧</h1>
 
   　<%= link_to notifications_destroy_all_path, method: :delete do %>
-  　  <h7>全削除</h7>
+  　 <%= image_tag "削除.png" %>
   　<% end %>
 
 
@@ -18,7 +18,7 @@
 
 
   <% if @notifications.blank? %>
-  　 <p class="pt-5">通知はありません</p>
+  　 <h4 class="pt-5">通知はありません</h4>
   <% end %>
 
 </div>
