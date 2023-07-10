@@ -32,13 +32,13 @@
     <div class="mt-4"><%= f.label :address, "▷住所" %></div>
     <div class="mb-4"><%= f.text_field :address %></div>
 
-  <div class="mb-4">
-    <input id="input_address" type="textbox"  placeholder="住所、場所名">
-    <input type="button" value="検索" onclick="codeAddress()">
-    <%= link_to "", onclick: "$('#search_form').submit()" do %>
-      <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
-    <% end %>
-  </div>
+    <div class="mb-4">
+      <input id="input_address" type="textbox"  placeholder="住所、場所名">
+
+      <%= link_to "#", onclick: "codeAddress(); return false;" do %>
+        <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
+      <% end %>
+    </div>
 
     <div class="mb-4">
       <%= f.label :latitude,"緯度" %>
@@ -108,7 +108,7 @@ function codeAddress(){
         //検索した時に緯度経度を入力する
         document.getElementById('lat').value = results[0].geometry.location.lat();
         document.getElementById('lng').value = results[0].geometry.location.lng();
-        document.getElementById('address').value = results[0].formatted_address;
+        document.getElementById('post_address').value = results[0].formatted_address;
 
         // マーカーのドロップ（ドラッグ終了）時のイベント
         google.maps.event.addListener( marker, 'dragend', function(ev){
