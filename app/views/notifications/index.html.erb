@@ -1,4 +1,4 @@
-<div class="container text-center mb-3">
+<div class="container text-center mb-3 ">
 
   <h1 class="pt-5 pb-4">通知一覧</h1>
 
@@ -8,7 +8,7 @@
 
 
     <% @notifications.each do |notification| %>
-     <div>
+     <div class="row col-6 mx-auto border mt-4 p-2 ">
     　 <%= link_to user_path(notification.visitor_id) do %>
          <%= image_tag notification.visitor.get_profile_image, size: "60x60" ,class:"rounded-circle" %>
     　 <% end %>

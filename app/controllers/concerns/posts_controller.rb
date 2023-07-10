@@ -66,9 +66,8 @@ class PostsController < ApplicationController
   end
 
   def favorite
-    favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
-    @favorite_posts = Post.find(favorites)
-    # .page(params[:page])
+    favorite_post_ids = Favorite.where(user_id: current_user.id).pluck(:post_id)
+    @favorite_posts = Post.where(id: favorite_post_ids).page(params[:page]).per(1)
   end
 
 
