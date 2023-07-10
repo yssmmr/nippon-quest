@@ -99,7 +99,7 @@ class Post < ApplicationRecord
       notification = current_user.active_notifications.new(
         post_id: id,
         visited_id: user_id,
-        action: "notification"
+        action: "favorite"
       )
 
     #自分の投稿に対するいいねの場合は通知済みとする
