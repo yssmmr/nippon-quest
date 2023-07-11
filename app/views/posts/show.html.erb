@@ -33,7 +33,7 @@
 
   <% if @post.user == current_user %>
 
-    <%= link_to edit_post_path(@post.id) do %>
+    <%= link_to edit_post_path(@post.id), style: "text-decoration-line: none;" do %>
       <%= image_tag "編集.png" %>
     <% end %>
 
