@@ -15,17 +15,13 @@
 
   <body>
 
-    <% unless controller_name == 'homes' && action_name == 'about' %>
-      <div class="background-side">
-    <% end %>
+
+  <div class="background-side">
    <div class="container text-center bg-white">
 
      <div class="row">
 
-       <!--<div class="col-1">-->
-       <!-- <%#= image_tag "背景.png", class: "background-side"%>-->
-       <!--</div>-->
-       <% unless controller_name == 'homes' && action_name == 'about' %>
+      <% unless controller_name == 'homes' || controller_name == "sessions"|| controller_name == "registrations" %>
        <div class="col-lg-3 mx-auto">
          <div class="sticky-top">
           <%= image_tag "NIPPONQUESTロゴ.png", style: 'width: 200px; height: auto;'%>
@@ -53,18 +49,31 @@
                   <%= image_tag "no-notifications" %>
                 <% end %>
               <% end %>
+
+            <div class="mt-4 mb-4">
+
+              <h3><%= link_to "みんなの投稿一覧", posts_path %></h3>
+              <h3><%= link_to "いいねリスト", posts_favorite_path  %></h3>
+              <h3><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></h3>
+
+            </div>
+            <div>
+              <%= link_to new_post_path do %>
+               <%= image_tag "新規作成.png" %>
+              <% end %>
+            </div>
         </div>
          </div>
         <% end %>
+
         <div class="col-lg-9 mx-auto">
-           <%= yield %>
+          <%= yield %>
         </div>
-        </div>
+
       </div>
     </div>
+  </div>
 
-    <% unless controller_name == 'homes' && action_name == 'about' %>
-      </div>
-    <% end %>
+
   </body>
 </html>

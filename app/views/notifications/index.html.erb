@@ -8,7 +8,7 @@
 
 
     <% @notifications.each do |notification| %>
-     <div class="row col-6 mx-auto border mt-4 p-2 ">
+     <div class="row col-6 mx-auto border mt-4  ">
     　 <%= link_to user_path(notification.visitor_id) do %>
          <%= image_tag notification.visitor.get_profile_image, size: "60x60" ,class:"rounded-circle" %>
     　 <% end %>
