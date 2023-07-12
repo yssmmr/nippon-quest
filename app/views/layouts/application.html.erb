@@ -15,15 +15,19 @@
 
   <body>
 
-
-   <div class=" container-fluit text-center">
+    <% unless controller_name == 'homes' && action_name == 'about' %>
+      <div class="background-side">
+    <% end %>
+   <div class="container text-center bg-white">
 
      <div class="row">
 
-       <div class="col-1">
-        <%= image_tag "背景.png", style: 'width: auto height: auto;'%>
-       </div>
-       <div class="col-2 mx-auto">
+       <!--<div class="col-1">-->
+       <!-- <%#= image_tag "背景.png", class: "background-side"%>-->
+       <!--</div>-->
+       <% unless controller_name == 'homes' && action_name == 'about' %>
+       <div class="col-lg-3 mx-auto">
+         <div class="sticky-top">
           <%= image_tag "NIPPONQUESTロゴ.png", style: 'width: 200px; height: auto;'%>
           <div class="pt-4">
             <%= image_tag current_user.get_profile_image,size: "200x150", size: "60x60" ,class:"rounded-circle"  %>
@@ -50,15 +54,17 @@
                 <% end %>
               <% end %>
         </div>
-        <div class="col-8">
+         </div>
+        <% end %>
+        <div class="col-lg-9 mx-auto">
            <%= yield %>
-        </div>
-        <div class="col-1">
         </div>
         </div>
       </div>
     </div>
 
-
+    <% unless controller_name == 'homes' && action_name == 'about' %>
+      </div>
+    <% end %>
   </body>
 </html>

@@ -3,7 +3,7 @@
 
   <h1 class="pt-5 mb-4">投稿一覧</h1>
 
-  <div class="row justify-content-end">
+  <div class="d-flex justify-content-end">
 
     <%= search_form_for @q, url: posts_path do |f| %>
       <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
