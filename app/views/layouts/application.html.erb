@@ -15,6 +15,50 @@
 
   <body>
 
-    <%= yield %>
+
+   <div class=" container-fluit text-center">
+
+     <div class="row">
+
+       <div class="col-1">
+        <%= image_tag "背景.png", style: 'width: auto height: auto;'%>
+       </div>
+       <div class="col-2 mx-auto">
+          <%= image_tag "NIPPONQUESTロゴ.png", style: 'width: 200px; height: auto;'%>
+          <div class="pt-4">
+            <%= image_tag current_user.get_profile_image,size: "200x150", size: "60x60" ,class:"rounded-circle"  %>
+          </div>
+          <h4 class="pt-4">
+            <%= current_user.name %></br>
+            <%= current_user.account_id %>
+          </h4>
+           <h4 class="mt-4">訪れた県:<%= current_user.posts.group(:prefecture).count.keys.size %>/47県</h4>
+           <h4><%= image_tag "場所.png", size: "30x30" %> <%= current_user.posts.group(:location_genre).count["location"] || 0 %>件
+                <%= image_tag "グルメ.png", size: "30x30" %> <%= current_user.posts.group(:location_genre).count["food"] ||0 %>件</h4>
+
+          <div>
+            <h4>フォロー<%= current_user.followings.count %>人</h4>
+            <h4>フォロワー<%= current_user.followers.count %>人</h4>
+          </div>
+              <% if unchecked_notifications.any? %>
+                 <%= link_to notifications_path(current_user) do %>
+                   <%= image_tag "notifications" %>
+                <% end %>
+              <% else %>
+                 <%= link_to notifications_path(current_user) do %>
+                  <%= image_tag "no-notifications" %>
+                <% end %>
+              <% end %>
+        </div>
+        <div class="col-8">
+           <%= yield %>
+        </div>
+        <div class="col-1">
+        </div>
+        </div>
+      </div>
+    </div>
+
+
   </body>
 </html>

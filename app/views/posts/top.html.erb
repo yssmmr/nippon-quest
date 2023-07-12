@@ -17,18 +17,6 @@
 
   <div id="map-container"></div>
 
-
-
-    <% if unchecked_notifications.any? %>
-      <%= link_to notifications_path(current_user) do %>
-        <%= image_tag "notifications" %>
-      <% end %>
-    <% else %>
-      <%= link_to notifications_path(current_user) do %>
-        <%= image_tag "no-notifications" %>
-      <% end %>
-    <% end %>
-
   <div class="row justify-content-around">
     <h1><%= current_user.name %>の投稿一覧</h1>
       <%= search_form_for @q, url: root_path, id: 'search_form' do |f| %>
