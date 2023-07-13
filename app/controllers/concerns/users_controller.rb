@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.id == current_user.id
       render :edit
     else
-      redirect_to root_path
+      redirect_to user_path(@user)
     end
 
   end
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
 
     if @user.update(user_params)
-      redirect_to root_path
+      redirect_to user_path(@user)
     else
       render :edit
     end
