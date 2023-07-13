@@ -1,1 +1,30 @@
-<%= render 'follow', users: @users %>
+
+<div class="container text-center user-search-page">
+
+  <h1 class="pt-5 mb-5">フォロワー一覧</h1>
+  <h4>合計：<%= @users.count %>人</h4>
+
+     <% if @users.exists? %>
+      <% @users.each do |user| %>
+       <div class="row col-5 p-3 mx-auto border mt-4 info-area">
+          <div class="col-3 align-self-center">
+            <%= image_tag user.get_profile_image, size: "60x60", class:"rounded-circle" %>
+          </div>
+
+          <div class="col-8">
+            <p><%= link_to user.name, user_path(user.id) %> <%= user.account_id %></p>
+            <p><%= user.introduction&.truncate(23) %></p>
+          </div>
+        </div>
+      <% end %>
+      
+    <% else %>
+      <h4 class="mt-5">ユーザーはいません</h4>
+    <% end %>
+
+
+  <div class="row justify-content-center">
+    <%= paginate @users %>
+  </div>
+
+</div>

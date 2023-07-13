@@ -17,8 +17,7 @@
 
 
   <div class="background-side">
-   <div class="container text-center bg-white">
-
+   <div class="container text-center bg-white main-height">
      <div class="row">
 
       <% unless controller_name == 'homes' || controller_name == "sessions"|| controller_name == "registrations" %>
@@ -37,8 +36,17 @@
                 <%= image_tag "グルメ.png", size: "30x30" %> <%= current_user.posts.group(:location_genre).count["food"] ||0 %>件</h4>
 
           <div>
-            <h4>フォロー<%= current_user.followings.count %>人</h4>
-            <h4>フォロワー<%= current_user.followers.count %>人</h4>
+            <h4>
+              <%= link_to user_followings_path(current_user) do %>
+                  フォロー<%= current_user.followings.count %>人
+              <% end %>
+            </h4>
+            <h4>
+              <%= link_to user_followers_path(current_user) do %>
+                  フォロワー<%= current_user.followers.count %>人
+              <% end %>
+            </h4>
+            <h4></h4>
           </div>
               <% if unchecked_notifications.any? %>
                  <%= link_to notifications_path(current_user) do %>
