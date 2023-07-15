@@ -32,12 +32,20 @@
       <h4 class="col-6"><%= image_tag "場所.png", size: "30x30" %> <%= @user.posts.group(:location_genre).count["location"] || 0 %>件</h4>
       <h4 class="col-6"><%= image_tag "グルメ.png", size: "30x30" %> <%= @user.posts.group(:location_genre).count["food"] ||0 %>件</h4>
     </div>
-    <div class="row col-4 mx-auto">
+    <div class="row col-5 mx-auto">
       <h4 class="col-6">フォロー<%= @user.followings.count %>人</h4>
       <h4 class="col-6">フォロワー<%= @user.followers.count %>人</h4>
     </div>
 
-    <h1 class="mt-5"><%= @user.name %>さんの投稿一覧</h1>
+    <div class="pt-5">
+      <% if @user == current_user %>
+        <%= link_to edit_user_path(@user.id) do %>
+          <%= image_tag "編集.png" %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <u><h1 class="mt-5"><%= @user.name %>さんの投稿一覧</h1></u>
 
     <%= render 'posts/list', posts: @posts %>
 

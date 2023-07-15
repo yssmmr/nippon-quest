@@ -27,7 +27,7 @@
            <%= link_to posts_top_path do %>
             <%= image_tag "NIPPONQUESTロゴ.png", style: 'width: 230px; height: auto;'%>
            <% end %>
-        <div class="current_user_side">
+        <div class="current_user_side mt-3">
           <div class="pt-4">
             <%= image_tag current_user.get_profile_image,size: "200x150", size: "60x60" ,class:"rounded-circle"  %>
           </div>
@@ -68,8 +68,10 @@
             <div class="mt-5 mb-5">
 
               <h3 class="mb-4"><%= link_to "▷みんなの投稿一覧", posts_path %></h3>
+              <h3 class="mb-4"><%= link_to "▷ユーザーを探す", users_search_path %></h3>
               <h3 class="mb-4"><%= link_to "▷いいねリスト", posts_favorite_path  %></h3>
               <h3 class="mb-4"><%= link_to "▷ログアウト", destroy_user_session_path, method: :delete %></h3>
+
 
             </div>
             <div class="pt-5">
