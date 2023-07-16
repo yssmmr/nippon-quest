@@ -3,23 +3,55 @@
 
   <u><h1 class="pt-5 mb-4">みんなの投稿一覧</h1></u>
 
-  <div class="d-flex justify-content-end">
+  <nav>
+    <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+      <button type="button" class="nav-link active" id="nav-allpost-tab" data-bs-toggle="tab" data-bs-target="#nav-allpost" role="tab" aria-controls="nav-allpost" aria-selected="true">全投稿</button>
+      <button type="button" class="nav-link" id="nav-followpost-tab" data-bs-toggle="tab" data-bs-target="#nav-followpost" role="tab" aria-controls="nav-followpost" aria-selected="false">フォロー中ユーザー</button>
+    </div>
+  </nav>
 
-    <%= search_form_for @q, url: posts_path do |f| %>
-      <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
-                  { include_blank: t('--都道府県--') } %>
 
-      <%= f.select :location_genre_eq, Post.location_genres_i18n.invert.map{|key, value| [key, Post.location_genres[value]]},
-                  { include_blank: t('--場所ジャンル--') } %>
 
-      <%= link_to "", onclick: "$('#search_form').submit()" do %>
-        <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
-      <% end %>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane active" id="nav-allpost" role="tabpanel" aria-labelledby="nav-allpost-tab" tabindex="0">
+        <div class="d-flex justify-content-end">
+          <%= search_form_for @q, url: posts_path do |f| %>
+            <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
+                        { include_blank: t('--都道府県--') } %>
 
-    <% end %>
+            <%= f.select :location_genre_eq, Post.location_genres_i18n.invert.map{|key, value| [key, Post.location_genres[value]]},
+                        { include_blank: t('--場所ジャンル--') } %>
+
+            <%= link_to "", onclick: "$('#search_form').submit()" do %>
+              <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
+            <% end %>
+
+          <% end %>
+        </div>
+
+        <%= render 'list', posts: @posts %>
+
+      </div>
+
+      <div class="tab-pane" id="nav-followpost" role="tabpanel" aria-labelledby="nav-followpost-tab" tabindex="0">
+       <div class="d-flex justify-content-end">
+          <%= search_form_for @q, url: posts_path do |f| %>
+            <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
+                        { include_blank: t('--都道府県--') } %>
+
+            <%= f.select :location_genre_eq, Post.location_genres_i18n.invert.map{|key, value| [key, Post.location_genres[value]]},
+                        { include_blank: t('--場所ジャンル--') } %>
+
+            <%= link_to "", onclick: "$('#search_form').submit()" do %>
+              <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
+            <% end %>
+
+          <% end %>
+        </div>
+
+      　<%= render 'list', posts: @posts %>
+
+      </div>
+    </div>
+
   </div>
-
-   <%= render 'list', posts: @posts %>
-
-
-</div>
