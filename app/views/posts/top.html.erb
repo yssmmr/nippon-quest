@@ -4,7 +4,7 @@
   <script>
     let areas = [
         <% (0..46).each do |i| %>
-          {code: <%= i + 1 %>, color: '<%= @map_prefs.include?(i) ? '#D45D70' : '#f0f0f0' %>', prefectures: [<%= i + 1 %>]},
+          {code: <%= i + 1 %>, color: '<%= @map_prefs.include?(i) ? '#66CC66' : '#f0f0f0' %>', prefectures: [<%= i + 1 %>]},
         <% end %>
       ]
     $(function(){
