@@ -11,7 +11,7 @@
          <%= f.select :location_genre_eq, Post.location_genres_i18n.invert.map{|key, value| [key, Post.location_genres[value]]},
                      { include_blank: t('--ジャンル--') } %>
 
-         <%= label :follow, "フォロー済みユーザのみにする" %>
+         <%= label :follow, "フォロー済みユーザー" %>
          <%= check_box_tag :follow, true, @follow %>
 
          <%= link_to "", onclick: "$('#post_search').submit()" do %>
