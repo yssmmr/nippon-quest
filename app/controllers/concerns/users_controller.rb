@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     @user = current_user
     @user.update(is_deleted: true)
     sign_out
-    redirect_to about_path
+    redirect_to root_path
   end
 
 
