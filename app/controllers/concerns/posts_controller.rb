@@ -16,9 +16,19 @@ class PostsController < ApplicationController
   end
 
   def index
+    if params[:follow].present?
+      @follow = params[:follow]
+    else
+      @follow = false
+    end
 
     @q = Post.ransack(params[:q])
+    @user = current_user.followings
     @posts = @q.result(distinct: true).released.order(created_at: :desc).page(params[:page])
+
+    if @follow == 'true'
+      @posts = @q.result(distinct: true).where(user: @user).released.order(created_at: :desc).page(params[:page])
+    end
 
   end
 
@@ -30,7 +40,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to root_path
+      redirect_to posts_top_path
     else
       render :new
     end

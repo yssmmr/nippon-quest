@@ -1,4 +1,4 @@
-<div class="container text-center user-top-page">
+<div class="container text-center user-top-page main-height">
 
   <%= javascript_include_tag 'jquery.japan-map.js' %>
   <script>
@@ -19,7 +19,7 @@
 
   <div class="d-flex justify-content-around pt-5 pb-5">
     <u><h1 class="text-decoration-underline"><%= current_user.name %>の投稿一覧</h1></u>
-      <%= search_form_for @q, url: root_path, id: 'search_form' do |f| %>
+      <%= search_form_for @q, url: posts_top_path, id: 'search_form' do |f| %>
         <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
                     { include_blank: t('--都道府県--') } %>
 
