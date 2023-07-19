@@ -64,7 +64,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def ensure_normal_user  #destroyアクションの前にメールアドレスがゲストユーザー用になっていないかチェック
     if resource.email == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
+      redirect_to posts_top_path, alert: 'ゲストユーザーは削除できません。'
     end
   end
 

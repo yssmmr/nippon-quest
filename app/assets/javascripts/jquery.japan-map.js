@@ -28,10 +28,10 @@
             height              : null,
             color               : "#a0a0a0",      // Default color, which used if no color is set in "areas" object.
             hoverColor          : null,           // If null, "color" will be 20% brightened when hovered.
-            backgroundColor     : "transparent",  // Background color of the element, like "canvas".
-            borderLineColor     : "#ffffff",      // Border Line of Prefectures.
+            backgroundColor     : "#A7F1FF",  // Background color of the element, like "canvas".
+            borderLineColor     : "#222222",      // Border Line of Prefectures.
             borderLineWidth     : 0.25,
-            lineColor           : "#a0a0a0",      // Border Line of the element and the partition line when "movesIsland" is true.
+            lineColor           : "#222222",      // Border Line of the element and the partition line when "movesIsland" is true.
             lineWidth           : 1,
             drawsBoxLine        : true,
             showsPrefectureName : true,
@@ -42,7 +42,7 @@
             prefectures         : definition_of_prefectures,
             movesIslands        : true,          //  Moves Nansei Islands (Okinawa and part of Kagishima) to the left-top space.
             font                : "MS Gothic",
-            fontSize            : 15,
+            fontSize            : 10,
             fontColor           : "#000000",
             fontShadowColor     : null,
             onSelect            : function(){},
@@ -846,7 +846,7 @@
 
         {
             "code" : 15,
-            "name" : "新潟県",
+            "name" : "新潟",
             "path" : [
                 {
                     "coords" : [480,205,480,206,480,208,481,209,483,210,483,212,481,213,479,213,479,215,479,217,478,220,478,221,478,223,479,224,480,224,480,225,479,226,478,227,478,228,477,229,476,229,476,230,476,232,476,234,474,233,473,233,472,234,471,235,469,235,469,236,469,237,469,238,468,239,467,240,468,242,469,243,469,245,469,247,469,249,468,249,467,248,466,246,465,246,465,247,463,248,463,251,462,250,462,252,460,252,460,253,459,253,458,255,457,254,457,254,456,255,456,255,456,255,456,253,455,251,454,249,453,246,451,247,449,248,448,249,448,249,447,249,447,251,447,252,444,251,442,252,442,252,441,251,441,250,440,249,439,249,437,250,437,250,437,251,436,252,436,253,435,253,435,253,435,252,434,250,434,249,434,248,433,248,433,247,433,247,435,246,438,245,440,245,441,244,442,243,443,242,445,242,446,242,447,242,449,239,452,238,454,235,455,234,456,232,457,231,458,229,459,227,461,223,465,221,468,220,471,218,473,214,474,210,474,207,475,205,476,205,476,204,477,204,479,205,480,205,480,205]

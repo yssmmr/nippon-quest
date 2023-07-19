@@ -68,8 +68,8 @@ class Post < ApplicationRecord
 
   enum location_genre: { food: 0, location: 1 }
 
-  enum is_released: { released: 0, private: 1}, _prefix: true
-  scope :released, ->{where(is_released: Post.is_releaseds[:released])}
+  enum is_released: { released: 0, not_released: 1}
+
 
   def self.ransackable_scopes(auth_object = nil)
     ["released"]
@@ -99,7 +99,7 @@ class Post < ApplicationRecord
       notification = current_user.active_notifications.new(
         post_id: id,
         visited_id: user_id,
-        action: "notification"
+        action: "favorite"
       )
 
     #自分の投稿に対するいいねの場合は通知済みとする

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).per(5)
 
   end
 
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.id == current_user.id
       render :edit
     else
-      redirect_to root_path
+      redirect_to user_path(@user)
     end
 
   end
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
 
     if @user.update(user_params)
-      redirect_to root_path
+      redirect_to user_path(@user)
     else
       render :edit
     end
@@ -34,13 +34,13 @@ class UsersController < ApplicationController
     @user = current_user
     @user.update(is_deleted: true)
     sign_out
-    redirect_to about_path
+    redirect_to root_path
   end
 
 
   def search
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).order(created_at: :desc)
+    @users = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   private

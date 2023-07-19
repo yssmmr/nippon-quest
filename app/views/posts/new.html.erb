@@ -1,53 +1,74 @@
-<h1>新規投稿</h1>
-
-<%= form_with model: @post do |f| %>
-
-  <%= f.label :location_name, "場所名" %><br />
-  <%= f.text_field :location_name %><br />
-
-  <%= f.label :prefecture, "都道府県" %><br />
-  <%= f.select :prefecture, Post.prefectures.keys.map {|k| [I18n.t("enums.post.prefecture.#{k}"), k]}, include_blank: "--選択して下さい--" %><br />
-
-  <%= f.label :location_genre, "場所ジャンル" %><br />
-  <%= f.select :location_genre, Post.location_genres.keys.map {|k| [I18n.t("enums.post.location_genre.#{k}"), k]}, include_blank: "--選択して下さい--" %><br />
-
-  <%= f.label :image ,"写真" %><br />
-  <%= f.file_field :image, accept: "image/*" %><br />
-
-  <%= f.label :memo, "メモ" %><br />
-  <%= f.text_area :memo %><br />
+<div class="container text-center mb-3">
 
 
-  <%= f.radio_button :is_released, Post.is_releaseds.key(0) %>
-  <%= f.label :is_released_released, Post.is_releaseds_i18n[:released] %>
+  <u><h1 class="pt-5 pb-4">新規投稿</h1></u>
 
+  <div class="mb-5">
+    <% if @post.errors.any? %>
+    <h5>★<%= @post.errors.count %>件のエラーが発生しました★</h5>
+      <% @post.errors.full_messages.each do |message| %>
+        <div>
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 
-  <%= f.radio_button :is_released, Post.is_releaseds.key(1) %>
-  <%= f.label :is_released_private, Post.is_releaseds_i18n[:private] %></br>
+  <%= form_with model: @post, local: true do |f| %>
 
+    <h4><%= f.label :location_name, "▷場所名" %></h4>
+    <div class="mb-4"><%= f.text_field :location_name %></div>
 
-  <%= f.label :address, "住所" %><br />
-  <%= f.text_field :address, id: :address %><br />
+    <h4><%= f.label :prefecture, "▷都道府県" %></h4>
+    <div class="mb-4"><%= f.select :prefecture, Post.prefectures.keys.map {|k| [I18n.t("enums.post.prefecture.#{k}"), k]}, include_blank: "--選択して下さい--"%></div>
 
+    <h4><%= f.label :location_genre, "▷場所ジャンル" %></h4>
+    <div class="mb-4"><%= f.select :location_genre, Post.location_genres.keys.map {|k| [I18n.t("enums.post.location_genre.#{k}"), k]}, include_blank: "--選択して下さい--" %></div>
 
-  <input id="input_address" type="textbox"  placeholder="住所、場所名">
-  <input type="button" value="検索" onclick="codeAddress()">
-  <p>※マーカーをドラック＆ドロップで位置の調整ができます。<p>
+    <h4><%= f.label :image ,"▷写真" %></h4>
+    <div class="row justify-content-center mb-4 "><%= f.file_field :image, accept: "image/*" %></div>
 
+    <h4><%= f.label :memo, "▷メモ" %></h4>
+    <div class="mb-4"><%= f.text_area :memo %></div>
 
-
-  <%= f.label :latitude,"緯度" %>
-  <%= f.text_field :latitude,:value =>"緯度", id: :lat %>
-  <%= f.label :longitude,"経度" %>
-  <%= f.text_field :longitude,:value =>"経度", id: :lng %>
-
-  <div id='map'></div>
+    <h4>
+      <%= f.radio_button :is_released, Post.is_releaseds.key(0) %>
+      <%= f.label :is_released_released, Post.is_releaseds_i18n[:released] %>
+      <%= f.radio_button :is_released, Post.is_releaseds.key(1) %>
+      <%= f.label :is_released_not_released, Post.is_releaseds_i18n[:not_released] %>
+    </h4>
 
 
 
-  <%= f.submit "新規投稿" %>
 
-<% end %>
+    <h4 class="mt-4"><%= f.label :address, "▷住所" %></h4>
+    <div class="mb-4"><%= f.text_field :address %></div>
+
+    <div class="mb-4">
+      <input id="input_address" type="textbox"  placeholder="住所、場所名">
+
+      <%= link_to "#", onclick: "codeAddress(); return false;" do %>
+        <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
+      <% end %>
+    </div>
+
+    <h4 class="mb-4">
+      <%= f.label :latitude,"緯度" %>
+      <%= f.text_field :latitude,:value =>"緯度", id: :lat %>
+      <%= f.label :longitude,"経度" %>
+      <%= f.text_field :longitude,:value =>"経度", id: :lng %>
+    </h4>
+
+    <div id='map', style="margin:0 auto;"></div>
+
+
+    <div class="mt-4">
+     <%= image_submit_tag("送信.png") %>
+    </div>
+
+  <% end %>
+
+</div>
 
 
 
@@ -99,7 +120,7 @@ function codeAddress(){
         //検索した時に緯度経度を入力する
         document.getElementById('lat').value = results[0].geometry.location.lat();
         document.getElementById('lng').value = results[0].geometry.location.lng();
-        document.getElementById('address').value = results[0].formatted_address;
+        document.getElementById('post_address').value = results[0].formatted_address;
 
         // マーカーのドロップ（ドラッグ終了）時のイベント
         google.maps.event.addListener( marker, 'dragend', function(ev){
