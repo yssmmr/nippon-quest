@@ -6,9 +6,9 @@ class FavoritesController < ApplicationController
     favorite = current_user.favorites.new(post_id: post.id)
     favorite.save
 
-    post.create_notification_favolite!(current_user)
+    post.create_notification_favorite!(current_user)
 
-    redirect_to posts_path
+    redirect_back fallback_location: root_path
   end
 
 
@@ -16,7 +16,7 @@ class FavoritesController < ApplicationController
     post = Post.find(params[:post_id])
     favorite = current_user.favorites.find_by(post_id: post.id)
     favorite.destroy
-    redirect_to posts_path
+    redirect_back fallback_location: root_path
   end
 
 end

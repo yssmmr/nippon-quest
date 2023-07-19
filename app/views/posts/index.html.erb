@@ -1,47 +1,27 @@
-<h1>投稿一覧</h1>
 
-<%= search_form_for @q, url: posts_path do |f| %>
-  <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
-              { include_blank: t('--都道府県--') } %>
+<div class="container text-center main-height">
 
-  <%= f.select :location_genre_eq, Post.location_genres_i18n.invert.map{|key, value| [key, Post.location_genres[value]]},
-              { include_blank: t('--場所ジャンル--') } %>
+  <u><h1 class="pt-5 mb-5">みんなの投稿一覧</h1></u>
 
-  <%= f.submit "検索" %>
+    <div class="d-flex justify-content-end">
+      <%= search_form_for @q, url: posts_path do |f| %>
+        <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
+                     { include_blank: t('--都道府県--') } %>
 
-<% end %>
+         <%= f.select :location_genre_eq, Post.location_genres_i18n.invert.map{|key, value| [key, Post.location_genres[value]]},
+                     { include_blank: t('--ジャンル--') } %>
 
+         <%= label :follow, "フォロー済みユーザー" %>
+         <%= check_box_tag :follow, true, @follow %>
 
+         <%= link_to "", onclick: "$('#post_search').submit()" do %>
+           <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
+         <% end %>
 
-<% @posts.each do |post| %>
-  <div>
-    <%= image_tag post.get_image,size: "600x400" %>
-    <%= link_to post.location_name, post_path(post.id) %>
-    <%= post.address %>
-    <%= post.memo %>
-    <%= post.prefecture_i18n %>
-    <%= post.location_genre_i18n %>
-
-    <% if post.favorited_by?(current_user) %>
-      <p>
-        <%= link_to post_favorites_path(post), method: :delete do %>
-        ★<%= post.favorites.count %>
-        <% end %>
-      </p>
-      <% else %>
-      <p>
-        <%= link_to post_favorites_path(post),method: :post do %>
-        ☆<%= post.favorites.count %>
-        <% end %>
-      </p>
       <% end %>
+    </div>
+
+   <%= render 'list', posts: @posts %>
+
 
   </div>
-
-  <div>
-    <%=  link_to post.user.name, user_path(post.user.id) %>
-    <%= post.user.account_id %>
-  </div>
-
-
-<% end %>

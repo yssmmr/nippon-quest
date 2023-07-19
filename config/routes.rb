@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   }
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'posts#top'
-  get 'posts/favorite'
+
+
+  get 'posts/favorite' => 'posts#favorite'
+  get 'posts/top' => 'posts#top'
+
   resources :posts do
     resource :favorites, only: [:create, :destroy]
   end
@@ -29,5 +32,5 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index]
   delete 'notifications/destroy_all' => 'notifications#destroy_all'
 
-
+  root to: 'homes#about'
 end

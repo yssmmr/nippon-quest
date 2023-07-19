@@ -7,9 +7,9 @@ def notification_form(notification)
 	  #notification.actionがフォローかいいね
 	  case notification.action
 	    when "follow" then
-	      tag.a(notification.visitor.name, href:user_path(@visitor), style:"font-weight: bold;")+"があなたをフォローしました"
-	    when "follow" then
-	      tag.a(notification.visitor.name, href:user_path(@visitor), style:"font-weight: bold;")+"が"+tag.a('あなたの投稿', href:post_path(notification.post_id), style:"font-weight: bold;")+"にいいねしました"
+	      tag.a(notification.visitor.name, href:user_path(@visitor), style:"font-weight: bold;")+"さんがあなたをフォローしました。"
+	    when "favorite" then
+	      tag.a(notification.visitor.name, href:user_path(@visitor), style:"font-weight: bold;")+"さんが"+tag.a('あなたの投稿', href:post_path(notification.post_id), style:"font-weight: bold;")+"にいいねしました。"
 	  end
 	end
 
