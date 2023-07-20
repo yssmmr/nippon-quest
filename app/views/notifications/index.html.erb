@@ -1,4 +1,4 @@
-<div class="container text-center main-height notification-page">
+<div class="container text-center main-height">
 
   <u><h1 class="pt-5 pb-4">通知一覧</h1></u>
 
@@ -8,23 +8,23 @@
   　<% end %>
   </div>
 
-    <% @notifications.each do |notification| %>
-     <div class="row col-10 mx-auto border mt-4 info-area">
-       <div class="col-2 align-self-center">
-    　 <%= link_to user_path(notification.visitor_id) do %>
+  <% @notifications.each do |notification| %>
+    <div class="row col-10 mx-auto border mt-4 info-area">
+      <div class="col-2 align-self-center">
+    　  <%= link_to user_path(notification.visitor_id) do %>
          <%= image_tag notification.visitor.get_profile_image, size: "60x60", class:"rounded-circle" %>
     　 <% end %>
-    　 </div>
-    　 <div class="col-8 h4 align-self-center">
-    　     <%= notification_form(notification) %></br>
-    　     <%= time_ago_in_words(notification.created_at) %>前
-    　  </div>
     　</div>
-    <% end %>
+    　<div class="col-8 h4 align-self-center">
+    　   <%= notification_form(notification) %></br>
+    　   <%= time_ago_in_words(notification.created_at) %>前
+      </div>
+    </div>
+  <% end %>
 
 
   <% if @notifications.blank? %>
-  　 <h4 class="pt-5">通知はありません</h4>
+  　<h4 class="pt-5">通知はありません</h4>
   <% end %>
 
 </div>

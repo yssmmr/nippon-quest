@@ -15,82 +15,83 @@
 
   <body>
 
+    <div class="background-side">
+     <div class="container text-center bg-white">
+       <div class="row">
 
-  <div class="background-side">
-   <div class="container text-center bg-white">
-     <div class="row">
+        <% unless controller_name == 'homes' || controller_name == "sessions"|| controller_name == "registrations" %>
+         <div class="col-lg-3 mx-auto background-color">
+           <div class="sticky-top">
 
-      <% unless controller_name == 'homes' || controller_name == "sessions"|| controller_name == "registrations" %>
-       <div class="col-lg-3 mx-auto background-color">
-         <div class="sticky-top">
+              <%= link_to posts_top_path do %>
+                <%= image_tag "NIPPONQUESTロゴ.png", style: 'width: 230px; height: auto;'%>
+              <% end %>
 
-           <%= link_to posts_top_path do %>
-            <%= image_tag "NIPPONQUESTロゴ.png", style: 'width: 230px; height: auto;'%>
-           <% end %>
-        <div class="current_user_side mt-3">
-          <div class="pt-4">
-            <%= image_tag current_user.get_profile_image,size: "200x150", size: "60x60" ,class:"rounded-circle"  %>
-          </div>
-          <h4 class="pt-4">
-            <%= link_to user_path(current_user) do%>
-              <%= current_user.name %></br>
-            <% end %>
-            <%= current_user.account_id %>
-          </h4>
-           <h4 class="mt-4">訪れた県:<%= current_user.posts.group(:prefecture).count.keys.size %>/47県</h4>
-           <h4><%= image_tag "場所.png", size: "30x30" %> <%= current_user.posts.group(:location_genre).count["location"] || 0 %>件
+           <div class="current_user_side mt-3">
+             <div class="pt-4">
+               <%= image_tag current_user.get_profile_image,size: "200x150", size: "60x60" ,class:"rounded-circle"  %>
+              </div>
+             <h4 class="pt-4">
+              <%= link_to user_path(current_user) do%>
+                <%= current_user.name %></br>
+              <% end %>
+              <%= current_user.account_id %>
+             </h4>
+
+              <h4 class="mt-4">訪れた県:<%= current_user.posts.group(:prefecture).count.keys.size %>/47県</h4>
+              <h4><%= image_tag "場所.png", size: "30x30" %> <%= current_user.posts.group(:location_genre).count["location"] || 0 %>件
                 <%= image_tag "グルメ.png", size: "30x30" %> <%= current_user.posts.group(:location_genre).count["food"] ||0 %>件</h4>
 
-          <div>
-            <h4>
-              <%= link_to user_followings_path(current_user) do %>
-                  フォロー<%= current_user.followings.count %>人
-              <% end %>
-            </h4>
-            <h4>
-              <%= link_to user_followers_path(current_user) do %>
-                  フォロワー<%= current_user.followers.count %>人
-              <% end %>
-            </h4>
-            <h4></h4>
-          </div>
+              <div>
+                <h4>
+                  <%= link_to user_followings_path(current_user) do %>
+                    フォロー<%= current_user.followings.count %>人
+                  <% end %>
+                </h4>
+                <h4>
+                  <%= link_to user_followers_path(current_user) do %>
+                    フォロワー<%= current_user.followers.count %>人
+                  <% end %>
+                </h4>
+              </div>
+
               <% if unchecked_notifications.any? %>
-                 <%= link_to notifications_path(current_user) do %>
-                   <%= image_tag "notifications" %>
+                <%= link_to notifications_path(current_user) do %>
+                  <%= image_tag "notifications" %>
                 <% end %>
               <% else %>
-                 <%= link_to notifications_path(current_user) do %>
+                <%= link_to notifications_path(current_user) do %>
                   <%= image_tag "no-notifications" %>
                 <% end %>
               <% end %>
-          </div>
+           </div>
 
-            <div class="mt-5 mb-5">
+           <div class="mt-5 mb-5">
 
-              <h3 class="mb-4"><%= link_to "▷みんなの投稿一覧", posts_path %></h3>
-              <h3 class="mb-4"><%= link_to "▷ユーザーを探す", users_search_path %></h3>
-              <h3 class="mb-4"><%= link_to "▷いいねリスト", posts_favorite_path  %></h3>
-              <h3 class="mb-4"><%= link_to "▷ログアウト", destroy_user_session_path, method: :delete %></h3>
+             <h3 class="mb-4"><%= link_to "▷みんなの投稿一覧", posts_path %></h3>
+             <h3 class="mb-4"><%= link_to "▷ユーザーを探す", users_search_path %></h3>
+             <h3 class="mb-4"><%= link_to "▷いいねリスト", posts_favorite_path  %></h3>
+             <h3 class="mb-4"><%= link_to "▷ログアウト", destroy_user_session_path, method: :delete %></h3>
 
-
-            </div>
-            <div class="pt-5">
-              <%= link_to new_post_path do %>
+           </div>
+           <div class="pt-5">
+             <%= link_to new_post_path do %>
                <%= image_tag "新規作成.png" %>
               <% end %>
-            </div>
+           </div>
+
+          </div>
+         </div>
+        <% end %>
+
+        <div class="col-lg-9 mx-auto">
+          <%= yield %>
         </div>
-      </div>
-     <% end %>
-
-     <div class="col-lg-9 mx-auto">
-       <%= yield %>
-      </div>
 
       </div>
+     </div>
     </div>
-  </div>
-
 
   </body>
+
 </html>
