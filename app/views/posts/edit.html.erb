@@ -4,12 +4,12 @@
 
   <div class="mb-5">
     <% if @post.errors.any? %>
-    <h5>★<%= @post.errors.count %>件のエラーが発生しました★</h5>
-      <% @post.errors.full_messages.each do |message| %>
-        <div>
-          <%= message %>
-        </div>
-      <% end %>
+      <h5>★<%= @post.errors.count %>件のエラーが発生しました★</h5>
+        <% @post.errors.full_messages.each do |message| %>
+          <div>
+            <%= message %>
+          </div>
+        <% end %>
     <% end %>
   </div>
 
@@ -21,7 +21,7 @@
     <h4><%= f.label :prefecture, "▷都道府県" %></h4>
     <div class="mb-4"><%= f.select :prefecture, Post.prefectures.keys.map {|k| [I18n.t("enums.post.prefecture.#{k}"), k]}, include_blank: "--選択して下さい--"%></div>
 
-    <h4><%= f.label :location_genre, "▷場所ジャンル" %></h4>
+    <h4><%= f.label :location_genre, "▷ジャンル" %></h4>
     <div class="mb-4"><%= f.select :location_genre, Post.location_genres.keys.map {|k| [I18n.t("enums.post.location_genre.#{k}"), k]}, include_blank: "--選択して下さい--" %></div>
 
     <h4><%= f.label :image ,"▷写真" %></h4>
@@ -37,16 +37,13 @@
       <%= f.label :is_released_not_released, Post.is_releaseds_i18n[:not_released] %>
     </h4>
 
-
-
     <h4 class="mt-4"><%= f.label :address, "▷住所" %></h4>
     <div class="mb-4"><%= f.text_field :address %></div>
 
-
     <div class="mb-4">
       <input id="input_address" type="textbox"  placeholder="住所、場所名">
-       <%= link_to "#", onclick: "codeAddress(); return false;" do %>
-          <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
+      <%= link_to "#", onclick: "codeAddress(); return false;" do %>
+        <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
       <% end %>
     </div>
 
@@ -59,9 +56,9 @@
 
     <div id='map', style="margin:0 auto;"></div>
 
-   <div class="mt-4">
-     <%= image_submit_tag("編集.png") %>
-   </div>
+    <div class="mt-4">
+      <%= image_submit_tag("編集.png") %>
+    </div>
 
   <% end %>
 
