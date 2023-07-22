@@ -14,7 +14,7 @@
 
   <% if @users.exists? %>
     <% @users.each do |user| %>
-      <div class="row col-5 p-3 mx-auto border mt-4 info-area background-color2">
+      <div class="row col-5 p-3 mx-auto mt-4 info-area background-color2">
         <div class="col-3 align-self-center">
           <%= image_tag user.get_profile_image, size: "60x60", class:"rounded-circle" %>
         </div>
