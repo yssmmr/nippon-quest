@@ -66,7 +66,7 @@
               <% end %>
            </div>
 
-           <div class="mt-5 mb-5 ml-5 text-left">
+           <div class="col mx-auto mt-5">
 
              <h3 class="mb-4"><%= link_to "▷みんなの投稿一覧", posts_path,class:"text-dark font-weight-bold" %></h3>
              <h3 class="mb-4"><%= link_to "▷ユーザーを探す", users_search_path,class:"text-dark font-weight-bold" %></h3>
@@ -74,7 +74,7 @@
              <h3 class="mb-4"><%= link_to "▷ログアウト", destroy_user_session_path,class:"text-dark font-weight-bold", method: :delete %></h3>
 
            </div>
-           <div class="pt-5 pb-3">
+           <div class="pt-5 pb-5">
              <%= link_to new_post_path do %>
                <%= image_tag "新規作成.png" %>
               <% end %>
