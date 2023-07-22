@@ -1,4 +1,4 @@
-<div class="container text-center user-top-page main-height">
+<div class="container text-center user-top-page main-height mt-3">
 
   <%= javascript_include_tag 'jquery.japan-map.js' %>
   <script>
@@ -8,9 +8,16 @@
         <% end %>
       ]
     $(function(){
+      let mapwidth = 400;
+      let showname = false;
+      if(document.body.clientWidth > 600){
+        mapwidth = document.body.clientWidth*0.5;
+        showname = true;
+      }
       $("#map-container").japanMap({
-          width: 800,
-          areas :areas
+          width: mapwidth,
+          areas :areas,
+          showsPrefectureName: showname
         });
     });
   </script>
@@ -34,6 +41,5 @@
   </div>
 
 <%= render 'list', posts: @posts %>
-
 
 </div>

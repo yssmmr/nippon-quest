@@ -27,11 +27,17 @@ class User < ApplicationRecord
 
 
 
-  validates :account_id, length: { in: 6..12 }, format: { with: /\A[0-9a-zA-Z]*\z/ }
-  validates :password, length: { in: 6..12 },  format: { with: /\A[0-9a-zA-Z]*\z/ }, on: :create
+ #ユーザーID制限
+  ACCOUNT_ID_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  validates_format_of :account_id, with: ACCOUNT_ID_REGEX, message: 'には英字と数字の両方を含めて設定してください'
+
+ #パスワード制限
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください', on: :create
+
   validates :email, presence: true
   validates :name, presence: true
-  validates :account_id, presence: true
+
 
   def self.guest #ゲストユーザー作成機能
     find_or_create_by!(email: 'guest@example.com') do |user|
