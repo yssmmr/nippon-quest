@@ -1,7 +1,7 @@
 
 <% if posts.any? %>
   <% posts.each do |post| %>
-    <div class="row col-10 mx-auto border mt-4 mb-4 background-color2">
+    <div class="row col-10 mx-auto mt-4 mb-4 background-color2">
       <div class="col-5">
         <%= image_tag post.get_image,size: "300x200", class:"mt-4 mb-2 img-fluid border border-light" %>
         <h4 class="mb-3">

@@ -64,7 +64,7 @@
 }
 
 .background-color{
-  background-color: #DDDDDD;
+  background-color: #999999;
 }
 
 .current_user_side{
@@ -81,7 +81,19 @@
 }
 
 .background-color2{
-  background-color: #333333;
+  background-color: #444444;
   color: white;
+  padding: 0.2em 0.5em;
+  margin: 2em 0;
+  border: solid 2px white;
+  box-shadow: 0px 0px 0px 4px #444444;
+}
+
+.box-border{
+    padding: 0.2em 0.5em;
+    margin: 2em 0;
+    background: #d6ebff;
+    box-shadow: 0px 0px 0px 10px #d6ebff;
+
 }
 

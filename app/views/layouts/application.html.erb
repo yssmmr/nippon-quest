@@ -32,7 +32,7 @@
                <%= image_tag current_user.get_profile_image,size: "200x150", size: "60x60" ,class:"rounded-circle"  %>
               </div>
              <h4 class="pt-4">
-              <%= link_to user_path(current_user) do%>
+              <%= link_to user_path(current_user),class:"text-dark font-weight-bold" do %>
                 <%= current_user.name %></br>
               <% end %>
               <%= current_user.account_id %>
@@ -44,12 +44,12 @@
 
               <div>
                 <h4>
-                  <%= link_to user_followings_path(current_user) do %>
+                  <%= link_to user_followings_path(current_user),class:"text-dark font-weight-bold" do %>
                     フォロー<%= current_user.followings.count %>人
                   <% end %>
                 </h4>
                 <h4>
-                  <%= link_to user_followers_path(current_user) do %>
+                  <%= link_to user_followers_path(current_user),class:"text-dark font-weight-bold" do %>
                     フォロワー<%= current_user.followers.count %>人
                   <% end %>
                 </h4>
@@ -66,12 +66,12 @@
               <% end %>
            </div>
 
-           <div class="mt-5 mb-5">
+           <div class="mt-5 mb-5 ml-5 text-left">
 
-             <h3 class="mb-4"><%= link_to "▷みんなの投稿一覧", posts_path %></h3>
-             <h3 class="mb-4"><%= link_to "▷ユーザーを探す", users_search_path %></h3>
-             <h3 class="mb-4"><%= link_to "▷いいねリスト", posts_favorite_path  %></h3>
-             <h3 class="mb-4"><%= link_to "▷ログアウト", destroy_user_session_path, method: :delete %></h3>
+             <h3 class="mb-4"><%= link_to "▷みんなの投稿一覧", posts_path,class:"text-dark font-weight-bold" %></h3>
+             <h3 class="mb-4"><%= link_to "▷ユーザーを探す", users_search_path,class:"text-dark font-weight-bold" %></h3>
+             <h3 class="mb-4"><%= link_to "▷いいねリスト", posts_favorite_path,class:"text-dark font-weight-bold"  %></h3>
+             <h3 class="mb-4"><%= link_to "▷ログアウト", destroy_user_session_path,class:"text-dark font-weight-bold", method: :delete %></h3>
 
            </div>
            <div class="pt-5 pb-3">
