@@ -1,38 +1,36 @@
 
-<div class="container text-center user-search-page mb-3">
+<div class="container text-center mb-3 main-height">
 
   <u><h1 class="pt-5 mb-5">ユーザーを探す</h1></u>
 
   <div class="row justify-content-end">
     <%= search_form_for @q, url: users_search_path do |f| %>
       <%= f.search_field :account_id_eq %>
-      <%= link_to "", onclick: "$('#search_form').submit()" do %>
+      <%= link_to "", onclick: "$('#user_search').submit()" do %>
         <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
       <% end %>
      <% end %>
   </div>
 
-
-    <% if @users.exists? %>
-      <% @users.each do |user| %>
-        <div class="row col-5 p-3 mx-auto border mt-4 info-area">
-          <div class="col-3 align-self-center">
-            <%= image_tag user.get_profile_image, size: "60x60", class:"rounded-circle" %>
-          </div>
-
-          <div class="col-8 align-self-center">
-            <h4><%= link_to user.name, user_path(user.id) %> <%= user.account_id %></h4>
-            <h4><%= user.introduction&.truncate(23) %></h4>
-          </div>
+  <% if @users.exists? %>
+    <% @users.each do |user| %>
+      <div class="row col-5 p-3 mx-auto mt-4 info-area background-color2">
+        <div class="col-3 align-self-center">
+          <%= image_tag user.get_profile_image, size: "60x60", class:"rounded-circle" %>
         </div>
-        <% end %>
-      <% else %>
-        <h4 class="mt-5">ユーザーはいません</p>
+
+        <div class="col-8 align-self-center">
+          <h4><%= link_to user.name, user_path(user.id), class:"text-light font-weight-bold" %> <%= user.account_id %></h4>
+          <h4><%= user.introduction&.truncate(23) %></h4>
+        </div>
+      </div>
     <% end %>
+  <% else %>
+      <h4 class="mt-5">ユーザーはいません</p>
+  <% end %>
 
   <div class="row justify-content-center">
     <%= paginate @users %>
   </div>
-
 
 </div>
