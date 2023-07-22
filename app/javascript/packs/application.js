@@ -12,9 +12,10 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
+import "./preview"
+
 
 Rails.start()
-Turbolinks.start()
 ActiveStorage.start()
 
 
