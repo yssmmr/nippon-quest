@@ -2,7 +2,7 @@
 <% if posts.any? %>
   <% posts.each do |post| %>
     <div class="row col-10 mx-auto mt-4 mb-4 background-color2">
-      <div class="col-5">
+      <div class="col-4">
         <%= image_tag post.get_image,size: "300x200", class:"mt-4 mb-2 img-fluid border border-light" %>
         <h4 class="mb-3">
           <%= image_tag post.user.get_profile_image, size: "60x60" ,class:"rounded-circle" %>
@@ -17,7 +17,13 @@
         <h4>▷<%= post.memo.truncate(40) %></h4>
       </div>
 
-      <div class="col-1 mt-4">
+      <div class="col-2 mt-4">
+
+        <% if post.food? %>
+          <%= image_tag "グルメ.png", size: "30x30" %>
+        <% else %>
+          <%= image_tag "場所.png", size: "30x30" %>
+        <% end %>
 
         <% if post.favorited_by?(current_user) %>
           <%= link_to post_favorites_path(post), class:"text-light", method: :delete do %>
@@ -28,11 +34,7 @@
              <%= image_tag "いいねoff.png", size: "20x20" %><%= post.favorites.count %>
            <% end %>
         <% end %>
-        <% if post.food? %>
-          <%= image_tag "グルメ.png", size: "30x30" %>
-        <% else %>
-          <%= image_tag "場所.png", size: "30x30" %>
-        <% end %>
+
        </div>
      </div>
   <% end %>
