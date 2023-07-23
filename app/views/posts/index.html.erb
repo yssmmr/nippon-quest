@@ -1,0 +1,25 @@
+
+<div class="container text-center main-height">
+
+  <u><h1 class="pt-5 mb-5">みんなの投稿一覧</h1></u>
+
+    <div class="d-flex justify-content-end">
+      <%= search_form_for @q, url: posts_path do |f| %>
+        <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
+                     { include_blank: t('--都道府県--') } %>
+
+        <%= f.select :location_genre_eq, Post.location_genres_i18n.invert.map{|key, value| [key, Post.location_genres[value]]},
+                     { include_blank: t('--ジャンル--') } %>
+
+        <%= label :follow, "フォロー済みユーザー" %>
+        <%= check_box_tag :follow, true, @follow %>
+
+        <%= link_to "", onclick: "$('#post_search').submit()" do %>
+          <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
+        <% end %>
+      <% end %>
+    </div>
+
+ <%= render 'list', posts: @posts %>
+
+</div>
