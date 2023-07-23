@@ -57,11 +57,11 @@
 
               <% if unchecked_notifications.any? %>
                 <%= link_to notifications_path(current_user) do %>
-                  <%= image_tag "notifications" %>
+                  <%= image_tag "notifications.png" %>
                 <% end %>
               <% else %>
                 <%= link_to notifications_path(current_user) do %>
-                  <%= image_tag "no-notifications" %>
+                  <%= image_tag "no-notifications.png" %>
                 <% end %>
               <% end %>
            </div>
