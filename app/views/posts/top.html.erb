@@ -1,0 +1,45 @@
+<div class="container text-center user-top-page main-height mt-3">
+
+  <%= javascript_include_tag 'jquery.japan-map.js' %>
+  <script>
+    let areas = [
+        <% (0..46).each do |i| %>
+          {code: <%= i + 1 %>, color: '<%= @map_prefs.include?(i) ? '#66CC66' : '#f0f0f0' %>', prefectures: [<%= i + 1 %>]},
+        <% end %>
+      ]
+    $(function(){
+      let mapwidth = 400;
+      let showname = false;
+      if(document.body.clientWidth > 600){
+        mapwidth = document.body.clientWidth*0.5;
+        showname = true;
+      }
+      $("#map-container").japanMap({
+          width: mapwidth,
+          areas :areas,
+          showsPrefectureName: showname
+        });
+    });
+  </script>
+
+  <div id="map-container"></div>
+
+  <div class="d-flex justify-content-around pt-5 pb-5">
+    <u><h1 class="text-decoration-underline"><%= current_user.name %>の投稿一覧</h1></u>
+      <%= search_form_for @q, url: posts_top_path, id: 'search_form' do |f| %>
+        <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
+                    { include_blank: t('--都道府県--') } %>
+
+        <%= f.select :location_genre_eq, Post.location_genres_i18n.invert.map{|key, value| [key, Post.location_genres[value]]},
+                    { include_blank: t('--場所ジャンル--') } %>
+
+        <%= link_to "", onclick: "$('#search_form').submit()" do %>
+          <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
+        <% end %>
+
+      <% end %>
+  </div>
+
+<%= render 'list', posts: @posts %>
+
+</div>

@@ -1,0 +1,12 @@
+<div class="container text-center main-height">
+
+  <u><h1 class="pt-5 mb-5">いいね一覧</h1></u>
+
+  <%= render 'list', posts: @favorite_posts %>
+
+  <div class="row justify-content-center">
+    <%= paginate @favorite_posts %>
+  </div>
+
+</div>
+
