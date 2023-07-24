@@ -102,7 +102,7 @@ class Post < ApplicationRecord
         action: "favorite"
       )
 
-    #自分の投稿に対するいいねの場合は通知済みとする
+    #自分の投稿に対するいいねの場合は通知済みにする
       if notification.visitor_id == notification.visited_id
         notification.checked = true
       end
