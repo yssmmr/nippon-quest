@@ -19,20 +19,20 @@
      <div class="container text-center bg-white border-side">
        <div class="row">
 
-        <% unless controller_name == 'homes' || controller_name == "sessions"|| controller_name == "registrations" %>
+        <% unless controller_name == 'homes' || controller_name == "sessions"|| controller_name == "registrations" || controller_name == "passwords" %>
          <div class="col-lg-3 mx-auto background-color border-side2">
            <div class="sticky-top">
 
               <%= link_to posts_top_path do %>
-                <%= image_tag "NIPPONQUESTロゴ.png", style: 'width: 230px; height: auto;'%>
+                <%= image_tag "NIPPONQUESTロゴ.png", style: 'width: 230px; height: auto;' %>
               <% end %>
 
            <div class="current_user_side mt-3">
              <div class="pt-4">
-               <%= image_tag current_user.get_profile_image,size: "200x150", size: "60x60" ,class:"rounded-circle"  %>
+               <%= image_tag current_user.get_profile_image, size: "200x150", size: "60x60" , class:"rounded-circle" %>
               </div>
              <h4 class="pt-4">
-              <%= link_to user_path(current_user),class:"text-dark font-weight-bold" do %>
+              <%= link_to user_path(current_user), class:"text-dark font-weight-bold" do %>
                 <%= current_user.name %></br>
               <% end %>
               <%= current_user.account_id %>
@@ -44,12 +44,12 @@
 
               <div>
                 <h4>
-                  <%= link_to user_followings_path(current_user),class:"text-dark font-weight-bold" do %>
+                  <%= link_to user_followings_path(current_user), class:"text-dark font-weight-bold" do %>
                     フォロー<%= current_user.followings.count %>人
                   <% end %>
                 </h4>
                 <h4>
-                  <%= link_to user_followers_path(current_user),class:"text-dark font-weight-bold" do %>
+                  <%= link_to user_followers_path(current_user), class:"text-dark font-weight-bold" do %>
                     フォロワー<%= current_user.followers.count %>人
                   <% end %>
                 </h4>
@@ -68,10 +68,10 @@
 
            <div class="col mx-auto mt-5 text-center">
             <ul class="list-unstyled d-inline-block">
-             <li class="mb-4 text-left h3"><%= link_to "▷みんなの投稿一覧", posts_path,class:"text-dark font-weight-bold" %></li>
-             <li class="mb-4 text-left h3"><%= link_to "▷ユーザーを探す", users_search_path,class:"text-dark font-weight-bold" %></li>
-             <li class="mb-4 text-left h3"><%= link_to "▷いいねリスト", posts_favorite_path,class:"text-dark font-weight-bold"  %></li>
-             <li class="mb-4 text-left h3"><%= link_to "▷ログアウト", destroy_user_session_path,class:"text-dark font-weight-bold", method: :delete %></li>
+             <li class="mb-4 text-left h3"><%= link_to "▷みんなの投稿一覧", posts_path, class:"text-dark font-weight-bold" %></li>
+             <li class="mb-4 text-left h3"><%= link_to "▷ユーザーを探す", users_search_path, class:"text-dark font-weight-bold" %></li>
+             <li class="mb-4 text-left h3"><%= link_to "▷いいねリスト", posts_favorite_path, class:"text-dark font-weight-bold" %></li>
+             <li class="mb-4 text-left h3"><%= link_to "▷ログアウト", destroy_user_session_path, class:"text-dark font-weight-bold", method: :delete %></li>
             </ul>
            </div>
 
