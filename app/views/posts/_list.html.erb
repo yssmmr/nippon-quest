@@ -5,8 +5,9 @@
       <div class="col-4">
         <%= image_tag post.get_image,size: "300x200", class:"mt-4 mb-2 img-fluid border border-light" %>
         <h4 class="mb-3">
-          <%= image_tag post.user.get_profile_image, size: "60x60" ,class:"rounded-circle" %>
-          <%=  link_to post.user.name, user_path(post.user.id), class:"text-light font-weight-bold" %> <%= post.user.account_id %>
+          <%= image_tag post.user.get_profile_image, size: "40x40" ,class:"rounded-circle" %>
+          <%=  link_to post.user.name, user_path(post.user.id), class:"text-light font-weight-bold" %>
+        <div><%= post.user.account_id %></div>
 
         </h4>
       </div>
