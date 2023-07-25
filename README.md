@@ -35,7 +35,6 @@
 - 新しく訪れたい場所を探したい時。
 
 
-
 ## 設計書
 - 作成中です。
 
@@ -43,11 +42,12 @@
 https://docs.google.com/spreadsheets/d/1QySd1OI1egrJcRKi1c-TxDBm4kc_KLAlQgTD2bq1Kh4/edit?usp=sharing
 
 ## 開発環境
-- OS：Windows11
+- OS：Linux
 - 言語：HTML,CSS,JavaScript,Ruby
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
 ## 使用素材
-- 仕様検討中です。
+- 日本地図: Japan-map-js(jQuery)
+- その他： 自作

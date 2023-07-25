@@ -7,12 +7,10 @@
   <% end %>
 
   <div class="pt-4">
-    <%= image_tag @user.get_profile_image,size: "200x150", size: "60x60" ,class:"rounded-circle"  %>
+    <%= image_tag @user.get_profile_image, size: "100x100", class:"rounded-circle" %>
   </div>
-  <h4 class="pt-4">
-    <%= @user.name %>
-    <%= @user.account_id %>
-  </h4>
+  <u><h3 class="pt-4 font-weight-bold"><%= @user.name %></h3></u>
+  <h4><%= @user.account_id %></h4>
   <div class="mt-4">
     <% unless @user == current_user %>
       <% if current_user.following?(@user) %>

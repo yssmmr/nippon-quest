@@ -9,7 +9,7 @@
   </div>
 
   <% @notifications.each do |notification| %>
-    <div class="row col-10 mx-auto border mt-4 info-area background-color2">
+    <div class="row col-9 mx-auto border mt-4 info-area background-color2">
       <div class="col-2 align-self-center">
     　  <%= link_to user_path(notification.visitor_id) do %>
          <%= image_tag notification.visitor.get_profile_image, size: "60x60", class:"rounded-circle" %>
@@ -24,7 +24,7 @@
 
 
   <% if @notifications.blank? %>
-  　<h4 class="pt-5">通知はありません</h4>
+  　<h4 class="pt-5">通知はありません。</h4>
   <% end %>
 
 </div>

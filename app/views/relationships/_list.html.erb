@@ -1,0 +1,22 @@
+<h4>合計：<%= @users.count %>人</h4>
+
+    <% if @users.exists? %>
+      <% @users.each do |user| %>
+        <div class="row col-5 p-3 mx-auto border mt-4 info-area background-color2">
+          <div class="col-3 align-self-center">
+            <%= image_tag user.get_profile_image, size: "60x60", class:"rounded-circle" %>
+          </div>
+
+          <div class="col-8 align-self-center">
+            <h4><%= link_to user.name, user_path(user.id), class:"text-light font-weight-bold" %> <%= user.account_id %></h4>
+            <h4><%= user.introduction&.truncate(23) %></h4>
+          </div>
+        </div>
+        <% end %>
+      <% else %>
+        <h4 class="mt-5">ユーザーはいません。</h4>
+    <% end %>
+
+   <div class="row justify-content-center">
+    <%= paginate @users %>
+  </div>

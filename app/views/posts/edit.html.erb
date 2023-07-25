@@ -1,6 +1,6 @@
 <div class="container text-center mb-3">
 
-  <h1 class="pt-5 pb-4">投稿編集</h1>
+  <u><h1 class="pt-5 pb-4">投稿編集</h1></u>
 
   <div class="mb-5">
     <% if @post.errors.any? %>
@@ -26,7 +26,9 @@
 
     <h4><%= f.label :image ,"▷写真" %></h4>
     <div class="row justify-content-center mb-4"><%= f.file_field :image, accept: "image/*" %></div>
+
     <div id="new-image"></div>
+
 
     <h4 class="mt-4"><%= f.label :memo, "▷メモ" %></h4>
     <div class="mb-4"><%= f.text_area :memo, size: "40x5" %></div>
