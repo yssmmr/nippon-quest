@@ -1,16 +1,16 @@
-<div class="container text-center">
+<div class="container text-center main-height">
 
-  <h1 class="m-5">パスワードを初期化</h1>
+  <u><h1 class="m-5">パスワードを初期化</h1></u>
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="field mb-4">
-      <%= f.label :"▷メールアドレス" %><br />
+    <h4 class="field pt-4 mb-4">
+      <%= f.label :"▷メールアドレス" %><br/>
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
+    </h4>
 
-    <div class="actions mb-3">
+    <div class="actions pt-5 mb-3">
       <%= image_submit_tag("送信") %>
     </div>
 

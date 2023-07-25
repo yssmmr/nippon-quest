@@ -6,36 +6,33 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <h4 class="field mb-4">
-      <%= f.label :"▷名前" %><br />
+      <%= f.label :"▷名前" %><br/>
       <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
     </h4>
 
     <h4 class="field mb-4">
-      <%= f.label :"▷ユーザーID" %><br />
-      <%= f.label :"(6~12文字 英数字混合)" %><br />
+      <%= f.label :"▷ユーザーID" %><br/>
+      <%= f.label :"(6~12文字 英数字混合)" %><br/>
       <%= f.text_field :account_id, autofocus: true, autocomplete: "account_id" %>
     </h4>
 
     <h4 class="field mb-4">
-      <%= f.label :"▷メールアドレス" %><br />
+      <%= f.label :"▷メールアドレス" %><br/>
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </h4>
 
     <h4 class="field mb-4">
-      <%= f.label :"▷パスワード" %><br />
+      <%= f.label :"▷パスワード" %><br/>
       <%= f.label :"(6~12文字 英数字混合)" %></br>
       <%= f.password_field :password, autocomplete: "new-password" %>
     </h4>
 
     <h4 class="field mb-5">
-      <%= f.label :"▷パスワード（確認用）" %><br />
+      <%= f.label :"▷パスワード（確認用）" %><br/>
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </h4>
 
-
-
-     <%= image_submit_tag("会員登録.png") %>
-
+    <%= image_submit_tag("会員登録.png") %>
 
   <% end %>
 

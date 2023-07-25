@@ -13,6 +13,7 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 import "./preview"
+import "./user_preview"
 
 
 Rails.start()
