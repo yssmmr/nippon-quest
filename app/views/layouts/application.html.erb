@@ -29,11 +29,11 @@
 
            <div class="current_user_side mt-3">
              <div class="pt-4">
-               <%= image_tag current_user.get_profile_image, size: "200x150", size: "60x60" , class:"rounded-circle" %>
+               <%= image_tag current_user.get_profile_image, size: "60x60" , class:"rounded-circle" %>
               </div>
              <h4 class="pt-4">
               <%= link_to user_path(current_user), class:"text-dark font-weight-bold" do %>
-                <%= current_user.name %></br>
+                <u><%= current_user.name %></u></br>
               <% end %>
               <%= current_user.account_id %>
              </h4>
