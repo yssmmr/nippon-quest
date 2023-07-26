@@ -1,4 +1,4 @@
-if (document.URL.match(/new|edit/)){
+if (document.URL.match(/posts\/new|posts\/\d{1,4}\/edit/)){
   document.addEventListener('DOMContentLoaded', () => {
 
     const createImageHTML = (blob) => {
