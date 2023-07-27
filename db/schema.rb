@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(version: 2023_06_25_084153) do
     t.integer "user_id", null: false
     t.string "location_name", null: false
     t.string "address", null: false
-    t.float "latitude", null: false
-    t.float "longitude", null: false
+    t.decimal "latitude", precision: 11, scale: 8, null: false
+    t.decimal "longitude", precision: 11, scale: 8, null: false
     t.string "memo", null: false
     t.integer "prefecture", null: false
     t.integer "is_released", default: 0, null: false
