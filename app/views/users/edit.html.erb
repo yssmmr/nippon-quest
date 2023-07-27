@@ -23,16 +23,18 @@
       <div id="profile-image"></div>
     </div>
 
+
+    <h4 class="mb-4">
+      <%= f.label :name, "▷名前" %></br>
+      <%= f.text_field :name, autocomplete: "name" %>
+    </h4>
+
     <h4 class="mb-4">
       <%= f.label :account_id,"▷ユーザーID" %></br>
       <%= f.label :acccount_id, "(6~12文字 英数字混合)" %></br>
       <%= f.text_field :account_id, autocomplete: "account_id" %>
     </h4>
 
-    <h4 class="mb-4">
-      <%= f.label :name, "▷名前" %></br>
-      <%= f.text_field :name, autocomplete: "name" %>
-    </h4>
 
     <h4>
       <%= f.label :introduction, "▷自己紹介文" %></br>
