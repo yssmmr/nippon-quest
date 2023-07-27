@@ -4,12 +4,12 @@
   <u><h1 class="pt-5 mb-5">ユーザーを探す</h1></u>
 
   <div class="row justify-content-end">
-    <%= search_form_for @q, url: users_search_path do |f| %>
+    <%= search_form_for @q, url: users_search_path, id: 'search_form', class: "d-flex align-items-center" do |f| %>
+     <span class="mx-1">
       <%= f.search_field :account_id_eq %>
-      <%= link_to "", onclick: "$('#user_search').submit()" do %>
-        <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
-      <% end %>
-     <% end %>
+     </span>
+      <%= image_submit_tag('検索.png', width: "75px", height: "auto", class: "mx-1") %>
+    <% end %>
   </div>
 
   <% if @users.exists? %>
