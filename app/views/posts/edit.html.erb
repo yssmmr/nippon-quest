@@ -76,17 +76,19 @@
 
 <script>
 
-//初期マップの設定
+//初期マップ（投稿した場所の地図）
 let map
 let marker
 function initMap(){
-  geocoder = new google.maps.Geocoder()
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    center:  {lat: 35.6803997, lng:139.7690174},  //東京
+  geocoder = new google.maps.Geocoder();
+  let post_lat = document.getElementById('lat').value;
+  let post_lng = document.getElementById('lng').value;
+  let pos = new google.maps.LatLng(post_lat, post_lng );
+  let options = {
+    center:  pos,
     zoom: 15,
-
-  });
+  }
+  map = new google.maps.Map(document.getElementById('map'), options);
 }
 
 //検索後のマップ作成
