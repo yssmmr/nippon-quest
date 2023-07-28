@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
   def search
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(5)
+    @users = @q.result(distinct: true).where(is_deleted: false).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   private
