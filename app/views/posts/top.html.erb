@@ -26,17 +26,16 @@
 
   <div class="d-flex justify-content-around pt-5 pb-5">
     <u><h1 class="text-decoration-underline"><%= current_user.name %>の投稿一覧</h1></u>
-      <%= search_form_for @q, url: posts_top_path, id: 'search_form' do |f| %>
-        <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
-                    { include_blank: t('--都道府県--') } %>
-
-        <%= f.select :location_genre_eq, Post.location_genres_i18n.invert.map{|key, value| [key, Post.location_genres[value]]},
-                    { include_blank: t('--場所ジャンル--') } %>
-
-        <%= link_to "", onclick: "$('#search_form').submit()" do %>
-          <%= image_tag '検索.png', style: 'width: 75px; height: auto;' %>
-        <% end %>
-
+      <%= search_form_for @q, url: posts_top_path, id: 'search_form', class: "d-flex align-items-center" do |f| %>
+        <span class="mx-1">
+          <%= f.select :prefecture_eq, Post.prefectures_i18n.invert.map{|key, value| [key, Post.prefectures[value]]},
+                      { include_blank: t('--都道府県--') } %>
+        </span>
+        <span class="mx-1">
+          <%= f.select :location_genre_eq, Post.location_genres_i18n.invert.map{|key, value| [key, Post.location_genres[value]]},
+                      { include_blank: t('--ジャンル--') } %>
+        </span>
+        <%= image_submit_tag('検索.png', width: "75px", height: "auto", class: "mx-1") %>
       <% end %>
   </div>
 

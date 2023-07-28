@@ -89,6 +89,11 @@ function initMap(){
     zoom: 15,
   }
   map = new google.maps.Map(document.getElementById('map'), options);
+
+  marker = new google.maps.Marker({
+    position:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+    map: map
+  });
 }
 
 //検索後のマップ作成
