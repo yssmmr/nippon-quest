@@ -117,4 +117,20 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  # 本番環境でメールを送るためのホストの設定
+  host = 'https://c98656ef674d4d6eb21328f72dba89b5.vfs.cloud9.ap-northeast-1.amazonaws.com'
+  config.action_mailer.default_url_options = { host: host }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+   address:              'smtp.gmail.com',
+   port:                  587,
+   domain:               'gmail.com',
+   user_name:            ENV["GMAIL"], #設定したgmailアドレス
+   password:              ENV["GMAIL_APP_PASSWORD"] ,  #2段階認証したアカウントで発行したアプリパスワード
+   authentication:       'plain',
+   enable_starttls_auto:  true
+  }
+
 end
