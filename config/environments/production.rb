@@ -119,7 +119,7 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
   # 本番環境でメールを送るためのホストの設定
-  host = 'https://c98656ef674d4d6eb21328f72dba89b5.vfs.cloud9.ap-northeast-1.amazonaws.com'
+  host = 'http://ec2-35-77-40-185.ap-northeast-1.compute.amazonaws.com/'
   config.action_mailer.default_url_options = { host: host }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
