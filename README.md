@@ -36,7 +36,7 @@
 
 
 ## 設計書
-- 作成中です。
+https://docs.google.com/spreadsheets/d/1GeZ46hVxEUe_esAgyQ5NfcQKrn1tuDNh-d6FE7NyXj0/edit?usp=sharing
 
 ## 実装機能リスト
 https://docs.google.com/spreadsheets/d/1QySd1OI1egrJcRKi1c-TxDBm4kc_KLAlQgTD2bq1Kh4/edit?usp=sharing
@@ -45,9 +45,11 @@ https://docs.google.com/spreadsheets/d/1QySd1OI1egrJcRKi1c-TxDBm4kc_KLAlQgTD2bq1
 - OS：Linux
 - 言語：HTML,CSS,JavaScript,Ruby
 - フレームワーク：Ruby on Rails
+- CSSフレームワーク：Bootstrap
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
 ## 使用素材
 - 日本地図: Japan-map-js(jQuery)
 - その他： 自作
+
