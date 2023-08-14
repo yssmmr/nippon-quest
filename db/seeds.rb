@@ -21,3 +21,8 @@ Post.create!(
     {location_name: '金刀比羅宮', address: '日本、〒766-8501 香川県仲多度郡琴平町８９２−１', latitude: 34.1839981, longitude: 133.8095371, prefecture: "kagawa", location_genre: "location", is_released: "released", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post3.jpg"), filename:"sample-post3.jpg"), memo: '香川にある有名な場所！', user_id: users[2].id }
   ]
 )
+
+Admin.create!(
+  email: 'admin123@example.com',
+  password: 'adminpassword'
+)

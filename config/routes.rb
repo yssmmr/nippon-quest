@@ -1,11 +1,24 @@
 Rails.application.routes.draw do
 
+ # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  devise_for :users, controllers: {
+
+ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+ }
+
+
+ devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :admin do
+    get '/' => 'homes#top'
+
+    resources :posts, only: [:index,:show,:destroy]
+    resources :users, only: [:index,:show,:destroy]
+
+  end
 
 
   get 'posts/favorite' => 'posts#favorite'
