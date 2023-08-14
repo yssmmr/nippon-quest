@@ -4,6 +4,10 @@ class Admin::PostsController < ApplicationController
 
   end
 
+  def show
+
+  end
+
   def destroy
 
   end
