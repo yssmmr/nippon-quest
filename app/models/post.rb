@@ -14,7 +14,7 @@ class Post < ApplicationRecord
   validates :memo, presence: true
   validates :prefecture, presence: true
   validates :location_genre, presence: true
-  validates :is_released, presence: true
+  validates :released_flag, presence: true
 
   enum prefecture: {
                     hokkaido: 0,
