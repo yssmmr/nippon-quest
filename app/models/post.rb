@@ -68,7 +68,7 @@ class Post < ApplicationRecord
 
   enum location_genre: { food: 0, location: 1 }
 
-  enum is_released: { released: 0, not_released: 1}
+  enum released_flag: { released: 0, not_released: 1}
 
 
   def self.ransackable_scopes(auth_object = nil)
