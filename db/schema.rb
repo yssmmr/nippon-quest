@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2023_08_13_132046) do
     t.decimal "longitude", precision: 11, scale: 8, null: false
     t.string "memo", null: false
     t.integer "prefecture", null: false
-    t.integer "is_released", default: 0, null: false
+    t.integer "released_flag", default: 0, null: false
     t.integer "location_genre", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -8,7 +8,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.decimal :longitude, precision: 11, scale: 8, null: false #経度
       t.string :memo, null: false
       t.integer :prefecture, null: false
-      t.integer :is_released, null: false, default: 0 #公開・非公開ステータス
+      t.integer :released_flag, null: false, default: 0 #公開・非公開ステータス
       t.integer :location_genre, null: false
 
       t.timestamps
