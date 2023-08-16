@@ -8,11 +8,17 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.all.page(params[:page])
+
+    if @user.is_deleted == false
+      @posts = @user.posts.all.page(params[:page])
+    else
+      redirect_to admin_users_path
+    end
   end
 
   def destroy
-
+    @user = User.find(params[:id])
+    @user.update(is_deleted: true)
+    redirect_to admin_users_path
   end
-
 end
