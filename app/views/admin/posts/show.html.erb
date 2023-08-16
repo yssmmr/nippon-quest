@@ -39,16 +39,9 @@
         }
     </style>
 
-
-     <% if @post.user == current_user %>
-      <%= link_to edit_post_path(@post.id), style: "text-decoration-line: none;" do %>
-        <%= image_tag "編集.png" %>
-      <% end %>
-
-      <%= link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+      <%= link_to admin_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
         <%= image_tag "削除.png" %>
       <% end %>
-     <% end %>
 
 </div>
 
