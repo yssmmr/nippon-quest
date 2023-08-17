@@ -117,4 +117,9 @@ class Post < ApplicationRecord
        'no-image.jpg'
     end
   end
+  
+  def showable?(viewer)
+    return true if released?
+    not_released? && viewer.present? && user == viewer
+  end
 end
