@@ -14,7 +14,9 @@
   </head>
 
   <body>
-
+    <% if flash[:alert].present? %>
+        <%= flash[:alert] %>
+    <% end %>
     <div class="background-side">
      <div class="container text-center bg-white border-side">
        <div class="row">
