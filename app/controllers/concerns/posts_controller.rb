@@ -42,7 +42,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to posts_top_path
+      redirect_to posts_top_path, alert: "▽投稿に成功しました！"
     else
       render :new
     end
@@ -62,7 +62,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if @post.update(post_params)
-      redirect_to post_path(@post.id)
+      redirect_to post_path(@post.id), alert: "▽編集に成功しました！"
     else
       render :edit
     end
@@ -71,7 +71,7 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to posts_path
+    redirect_to posts_path, alert: "▽削除に成功しました！"
   end
 
   def show
@@ -94,7 +94,7 @@ class PostsController < ApplicationController
   def authenticate_viewer!
     post = Post.find(params[:id])
     unless post.showable?(current_user)
-      redirect_to root_path, alert: "投稿者でないと閲覧できません。"
+      redirect_to root_path, alert: "▽投稿者でないと閲覧できません！"
     end
   end
 end

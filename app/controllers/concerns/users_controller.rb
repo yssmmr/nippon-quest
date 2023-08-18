@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     if @user.id == current_user.id
       render :edit
     else
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), alert: "▽ユーザー本人でないと編集できません！"
     end
 
   end
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
 
     if @user.update(user_params)
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), alert: "▽ユーザーの編集に成功しました！"
     else
       render :edit
     end
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     @user = current_user
     @user.update(is_deleted: true)
     sign_out
-    redirect_to root_path
+    redirect_to root_path, alert: "▽退会処理に成功しました！"
   end
 
 
