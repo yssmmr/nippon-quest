@@ -6,7 +6,14 @@
         <%= image_tag post.get_image,size: "300x200", class:"mt-4 mb-2 img-fluid border border-light" %>
         <h4 class="mb-3">
           <%= image_tag post.user.get_profile_image, size: "40x40" ,class:"rounded-circle" %>
-          <%=  link_to post.user.name, user_path(post.user.id), class:"text-light font-weight-bold" %>
+
+
+           <% if user_signed_in? %>
+             <%=  link_to post.user.name, user_path(post.user.id), class:"text-light font-weight-bold" %>
+           <% elsif admin_signed_in? %>
+             <%=  link_to post.user.name, admin_user_path(post.user.id), class:"text-light font-weight-bold" %>
+           <% end %>
+
         <div><%= post.user.account_id %></div>
 
         </h4>
@@ -26,18 +33,20 @@
           <%= image_tag "場所.png", size: "30x30" %>
         <% end %>
 
-        <% if post.favorited_by?(current_user) %>
-          <%= link_to post_favorites_path(post), class:"text-light", method: :delete do %>
-            <%= image_tag "いいねon.png", size: "20x20" %><%= post.favorites.count %>
-          <% end %>
-        <% else %>
-           <%= link_to post_favorites_path(post), class:"text-light", method: :post do %>
+
+          <% if post.favorited_by?(current_user) %>
+            <%= link_to post_favorites_path(post), class:"text-light", method: :delete do %>
+              <%= image_tag "いいねon.png", size: "20x20" %><%= post.favorites.count %>
+            <% end %>
+          <% else %>
+            <%= link_to post_favorites_path(post), class:"text-light", method: :post do %>
              <%= image_tag "いいねoff.png", size: "20x20" %><%= post.favorites.count %>
-           <% end %>
-        <% end %>
+            <% end %>
+          <% end %>
 
        </div>
      </div>
+
   <% end %>
 <% else %>
   <h4 class="mt-5 main-height">投稿はありません。</h4>

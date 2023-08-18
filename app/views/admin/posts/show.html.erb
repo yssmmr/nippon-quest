@@ -1,4 +1,3 @@
-
 <div class="container text-center mb-3">
 
   <u><h1 class="pt-5 pb-4">投稿詳細</h1></u>
@@ -17,7 +16,7 @@
    </div>
   </div>
 
-    <u><h4 class="mb-3 mt-5 font-weight-bold"><%= link_to @post.user.name, user_path(@post.user.id), class:"text-dark" %></h4></u>
+    <u><h4 class="mb-3 mt-5 font-weight-bold"><%= link_to @post.user.name, admin_user_path(@post.user.id), class:"text-dark" %></h4></u>
     <h4 class="mb-4"><%= @post.user.account_id %></h4>
 
     <h4>▷都道府県： <%= @post.prefecture_i18n %></h4>
@@ -40,16 +39,9 @@
         }
     </style>
 
-
-     <% if @post.user == current_user %>
-      <%= link_to edit_post_path(@post.id), style: "text-decoration-line: none;" do %>
-        <%= image_tag "編集.png" %>
-      <% end %>
-
-      <%= link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+      <%= link_to admin_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
         <%= image_tag "削除.png" %>
       <% end %>
-     <% end %>
 
 </div>
 

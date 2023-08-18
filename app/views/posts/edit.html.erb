@@ -34,10 +34,10 @@
     <div class="mb-4"><%= f.text_area :memo, size: "40x5" %></div>
 
     <h4>
-      <%= f.radio_button :is_released, Post.is_releaseds.key(0) %>
-      <%= f.label :is_released_released, Post.is_releaseds_i18n[:released] %>
-      <%= f.radio_button :is_released, Post.is_releaseds.key(1) %>
-      <%= f.label :is_released_not_released, Post.is_releaseds_i18n[:not_released] %>
+      <%= f.radio_button :released_flag, Post.released_flags.key(0) %>
+      <%= f.label :released_flag_released, Post.released_flags_i18n[:released] %>
+      <%= f.radio_button :released_flag, Post.released_flags.key(1) %>
+      <%= f.label :released_flag_not_released, Post.released_flags_i18n[:not_released] %>
     </h4>
 
     <h4 class="mt-4"><%= f.label :address, "▷住所" %></h4>
@@ -137,4 +137,4 @@ function codeAddress(){
 }
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgTeNLc165-cfs1Py1tbvvfjXe2YNukGE&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SECRET_MAP_API'] %>&callback=initMap" async defer></script>
