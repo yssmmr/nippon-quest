@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authenticate_viewer!, only: :show
 
   def top
     @q = Post.ransack(params[:q])
@@ -49,6 +51,11 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+
+    unless @post.user.id == current_user.id
+      redirect_to post_path(@post.id)
+    end
+
   end
 
   def update
@@ -81,7 +88,13 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :image, :location_name, :address, :latitude, :longitude, :memo, :prefecture, :location_genre, :is_released)
+    params.require(:post).permit(:user_id, :image, :location_name, :address, :latitude, :longitude, :memo, :prefecture, :location_genre, :released_flag)
   end
 
+  def authenticate_viewer!
+    post = Post.find(params[:id])
+    unless post.showable?(current_user)
+      redirect_to root_path, alert: "投稿者でないと閲覧できません。"
+    end
+  end
 end
