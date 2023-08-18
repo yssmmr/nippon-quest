@@ -246,6 +246,6 @@ ja:
         food: "グルメ"
         location: "場所"
 
-      is_released:
+      released_flag:
         released: "公開"
         not_released: "非公開"
