@@ -14,7 +14,7 @@ class Post < ApplicationRecord
   validates :memo, presence: true
   validates :prefecture, presence: true
   validates :location_genre, presence: true
-  validates :is_released, presence: true
+  validates :released_flag, presence: true
 
   enum prefecture: {
                     hokkaido: 0,
@@ -68,7 +68,7 @@ class Post < ApplicationRecord
 
   enum location_genre: { food: 0, location: 1 }
 
-  enum is_released: { released: 0, not_released: 1}
+  enum released_flag: { released: 0, not_released: 1}
 
 
   def self.ransackable_scopes(auth_object = nil)
@@ -116,5 +116,10 @@ class Post < ApplicationRecord
     else
        'no-image.jpg'
     end
+  end
+
+  def showable?(viewer)
+    return true if released?
+    not_released? && viewer.present? && user == viewer
   end
 end

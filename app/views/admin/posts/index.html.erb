@@ -1,0 +1,47 @@
+<div class="container text-center main-height">
+
+  <u><h1 class="m-5 pb-5">全投稿一覧</h1></u>
+
+  <% if @posts.any? %>
+    <% @posts.each do |post| %>
+      <div class="row col-10 mx-auto mt-4 mb-4 background-color2">
+        <div class="col-4">
+          <%= image_tag post.get_image,size: "300x200", class:"mt-4 mb-2 img-fluid border border-light" %>
+          <h4 class="mb-3">
+            <%= image_tag post.user.get_profile_image, size: "40x40" ,class:"rounded-circle" %>
+
+            <%=  link_to post.user.name, admin_user_path(post.user.id), class:"text-light font-weight-bold" %>
+
+          <div><%= post.user.account_id %></div>
+
+          </h4>
+        </div>
+
+        <div class="col-6 align-self-center">
+          <h4>▷<%= link_to post.location_name,admin_post_path(post.id), class:"text-light font-weight-bold" %></h4>
+          <h4>▷<%= post.address %></h4>
+          <h4>▷<%= post.memo.truncate(40) %></h4>
+        </div>
+
+        <div class="col-2 mt-4">
+
+          <% if post.food? %>
+            <%= image_tag "グルメ.png", size: "30x30" %>
+          <% else %>
+            <%= image_tag "場所.png", size: "30x30" %>
+          <% end %>
+
+          <%= image_tag "いいねoff.png", size: "20x20" %><%= post.favorites.count %>
+
+         </div>
+       </div>
+
+    <% end %>
+
+  <% else %>
+    <h4 class="mt-5 main-height">投稿はありません。</h4>
+  <% end %>
+
+  <div class="row justify-content-center">
+    <%= paginate @posts %>
+  </div>
