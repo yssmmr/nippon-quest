@@ -7,12 +7,7 @@
         <h4 class="mb-3">
           <%= image_tag post.user.get_profile_image, size: "40x40" ,class:"rounded-circle" %>
 
-
-           <% if user_signed_in? %>
-             <%=  link_to post.user.name, user_path(post.user.id), class:"text-light font-weight-bold" %>
-           <% elsif admin_signed_in? %>
-             <%=  link_to post.user.name, admin_user_path(post.user.id), class:"text-light font-weight-bold" %>
-           <% end %>
+           <%=  link_to post.user.name, user_path(post.user.id), class:"text-light font-weight-bold" %>
 
         <div><%= post.user.account_id %></div>
 
