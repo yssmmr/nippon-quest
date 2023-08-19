@@ -3,11 +3,15 @@
 class Admin::SessionsController < Devise::SessionsController
 
   def after_sign_in_path_for(resource)
+    flash[:alert] = "▽ログインに成功しました！"
     admin_posts_path
+
   end
 
   def after_sign_out_path_for(resource)
+    flash[:alert] = "▽ログアウトに成功しました！"
     new_admin_session_path
+
   end
 
   # before_action :configure_sign_in_params, only: [:create]
