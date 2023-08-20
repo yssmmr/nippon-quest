@@ -24,15 +24,14 @@
                <% if request.fullpath.include? "/admin" %>
                 <div class="col mx-auto mt-5 text-center">
                   <ul class="list-unstyled d-inline-block">
-                    <li class="mb-4 text-light h5"><%= link_to "▷投稿管理", admin_posts_path, class:"text-light font-weight-bold" %></li>
+                    <li class="mb-4 text-left h5"><%= link_to "▷投稿管理", admin_posts_path, class:"text-light font-weight-bold" %></li>
                     <li class="mb-4 text-left h5"><%= link_to "▷ユーザー管理", admin_users_path, class:"text-light font-weight-bold" %></li>
                     <li class="mb-4 text-left h5"><%= link_to "▷ログアウト", destroy_admin_session_path, class:"text-light font-weight-bold", method: :delete %></li>
                   </ul>
                 </div>
 
                <% else %>
-                 <div class="col mx-auto mt-5 text-center">
-                  <div class="col mx-auto mt-5 text-center">
+                  <div class="col mx-auto mt-1 text-center">
                    <div class="current_user_side mt-3">
                      <div class="pt-4">
                        <%= image_tag current_user.get_profile_image, size: "60x60" , class:"rounded-circle" %>
@@ -89,7 +88,7 @@
                 <% end %>
 
               <% elsif user_signed_in? %>
-                <div class="col mx-auto mt-5 text-center">
+                <div class="col mx-auto mt-1 text-center">
                    <div class="current_user_side mt-3">
                      <div class="pt-4">
                        <%= image_tag current_user.get_profile_image, size: "60x60" , class:"rounded-circle" %>
@@ -147,6 +146,11 @@
           </div>
         </div>
         <nav class="navbar navbar-dark bg-secondary mb-0 justify-content-end">
+          <a class="navbar-brand">
+            <%= link_to root_path do %>
+              <%= image_tag "NIPPONQUESTロゴ.png", style: 'width: 230px; height: auto;' %>
+            <% end %>
+          </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -167,7 +171,7 @@
 
          <% if admin_signed_in? %>
           <% if request.fullpath.include? "/admin" %>
-            <div class="col-lg-3 mx-auto background-color border-side2">
+            <div class="col-lg-3 mx-auto bg-secondary border-side2 d-none d-md-block">
              <div class="sticky-top">
               <%= link_to root_path do %>
                 <%= image_tag "NIPPONQUESTロゴ.png", style: 'width: 230px; height: auto;' %>
@@ -185,7 +189,7 @@
 
         <% else %>
 
-         <div class="col-lg-3 mx-auto background-color border-side2">
+         <div class="col-lg-3 mx-auto bg-secondary border-side2">
            <div class="sticky-top">
 
               <%= link_to posts_top_path do %>
@@ -251,7 +255,7 @@
         <% end %>
 
         <% elsif user_signed_in?  %>
-         <div class="col-lg-3 mx-auto background-color border-side2 d-none d-md-block">
+         <div class="col-lg-3 mx-auto bg-secondary border-side2 d-none d-md-block">
            <div class="sticky-top">
 
              <%= link_to posts_top_path do %>
