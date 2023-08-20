@@ -39,6 +39,7 @@ class UsersController < ApplicationController
   def destroy
     @user = current_user
     @user.update(is_deleted: true)
+    @user.posts.destroy_all
     sign_out
     redirect_to root_path, alert: "▽退会処理に成功しました！"
   end
