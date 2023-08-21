@@ -14,9 +14,153 @@
   </head>
 
   <body>
-      <% if flash[:alert].present? %>
-        <div class="alert alert-primary mb-0"><%= flash[:alert] %><button type="button" class="close" data-dismiss="alert">&times;</button></div>
+    <% unless controller_name == 'homes' || controller_name == "sessions"|| controller_name == "registrations" || controller_name == "passwords" %>
+
+      <div class="pos-f-t d-block d-md-none sticky-top">
+        <div class="collapse" id="navbarToggleExternalContent">
+          <div class="p-4 bg-secondary">
+
+             <% if admin_signed_in? %>
+               <% if request.fullpath.include? "/admin" %>
+                <div class="col mx-auto mt-5 text-center">
+                  <ul class="list-unstyled d-inline-block">
+                    <li class="mb-4 text-left h5"><%= link_to "▷投稿管理", admin_posts_path, class:"text-light font-weight-bold" %></li>
+                    <li class="mb-4 text-left h5"><%= link_to "▷ユーザー管理", admin_users_path, class:"text-light font-weight-bold" %></li>
+                    <li class="mb-4 text-left h5"><%= link_to "▷ログアウト", destroy_admin_session_path, class:"text-light font-weight-bold", method: :delete %></li>
+                  </ul>
+                </div>
+
+               <% else %>
+                  <div class="col mx-auto mt-1 text-center">
+                   <div class="current_user_side mt-3">
+                     <div class="pt-4">
+                       <%= image_tag current_user.get_profile_image, size: "60x60" , class:"rounded-circle" %>
+                      </div>
+                     <h5 class="pt-4 text-light font-weight-bold">
+                      <%= link_to user_path(current_user), class:"text-light font-weight-bold" do %>
+                        <u><%= current_user.name %></u></br>
+                      <% end %>
+                      <%= current_user.account_id %>
+                     </h5>
+
+                     <h5 class="mt-4 text-light font-weight-bold">訪れた県:<%= current_user.posts.group(:prefecture).count.keys.size %>/47県</h4>
+                     <h5 class="text-light font-weight-bold"><%= image_tag "場所.png", size: "30x30" %> <%= current_user.posts.group(:location_genre).count["location"] || 0 %>件
+                       <%= image_tag "グルメ.png", size: "30x30" %> <%= current_user.posts.group(:location_genre).count["food"] ||0 %>件
+                     </h5>
+
+                     <div>
+                      <h5 class="text-light font-weight-bold">
+                        <%= link_to user_followings_path(current_user), class:"text-light font-weight-bold" do %>
+                          フォロー<%= current_user.followings.count %>人
+                        <% end %>
+                      </h5>
+                      <h5>
+                        <%= link_to user_followers_path(current_user), class:"text-light font-weight-bold" do %>
+                          フォロワー<%= current_user.followers.count %>人
+                        <% end %>
+                      </h5>
+                     </div>
+
+                      <% if unchecked_notifications.any? %>
+                        <%= link_to notifications_path(current_user) do %>
+                          <%= image_tag "notifications.png" %>
+                        <% end %>
+                      <% else %>
+                        <%= link_to notifications_path(current_user) do %>
+                          <%= image_tag "no-notifications.png" %>
+                        <% end %>
+                      <% end %>
+                   </div>
+
+                  <ul class="list-unstyled d-inline-block">
+                    <li class="mb-4 text-left h5"><%= link_to "▷みんなの投稿一覧", posts_path, class:"text-light font-weight-bold" %></li>
+                    <li class="mb-4 text-left h5"><%= link_to "▷ユーザーを探す", users_search_path, class:"text-light font-weight-bold" %></li>
+                    <li class="mb-4 text-left h5"><%= link_to "▷いいねリスト", posts_favorite_path, class:"text-light font-weight-bold" %></li>
+                    <li class="mb-1 text-left h5"><%= link_to "▷ログアウト", destroy_user_session_path, class:"text-light font-weight-bold", method: :delete %></li>
+                  </ul>
+                   <div class="pb-2">
+                    <%= link_to new_post_path do %>
+                      <%= image_tag "新規作成.png", size:"100x60" %>
+                    <% end %>
+                 　</div>
+                 </div>
+
+                <% end %>
+
+              <% elsif user_signed_in? %>
+                <div class="col mx-auto mt-1 text-center">
+                   <div class="current_user_side mt-3">
+                     <div class="pt-4">
+                       <%= image_tag current_user.get_profile_image, size: "60x60" , class:"rounded-circle" %>
+                      </div>
+                     <h5 class="pt-4 text-light font-weight-bold">
+                      <%= link_to user_path(current_user), class:"text-light font-weight-bold" do %>
+                        <u><%= current_user.name %></u></br>
+                      <% end %>
+                      <%= current_user.account_id %>
+                     </h6>
+
+                     <h5 class="mt-4 text-light font-weight-bold">訪れた県:<%= current_user.posts.group(:prefecture).count.keys.size %>/47県</h4>
+                     <h5 class="text-light font-weight-bold"><%= image_tag "場所.png", size: "30x30" %> <%= current_user.posts.group(:location_genre).count["location"] || 0 %>件
+                       <%= image_tag "グルメ.png", size: "30x30" %> <%= current_user.posts.group(:location_genre).count["food"] ||0 %>件
+                     </h5>
+
+                     <div>
+                      <h5 class="text-light font-weight-bold">
+                        <%= link_to user_followings_path(current_user), class:"text-light font-weight-bold" do %>
+                          フォロー<%= current_user.followings.count %>人
+                        <% end %>
+                      </h5>
+                      <h5>
+                        <%= link_to user_followers_path(current_user), class:"text-light font-weight-bold" do %>
+                          フォロワー<%= current_user.followers.count %>人
+                        <% end %>
+                      </h5>
+                     </div>
+
+                      <% if unchecked_notifications.any? %>
+                        <%= link_to notifications_path(current_user) do %>
+                          <%= image_tag "notifications.png" %>
+                        <% end %>
+                      <% else %>
+                        <%= link_to notifications_path(current_user) do %>
+                          <%= image_tag "no-notifications.png" %>
+                        <% end %>
+                      <% end %>
+                   </div>
+
+                <ul class="list-unstyled d-inline-block">
+                  <li class="mb-4 text-left h5"><%= link_to "▷みんなの投稿一覧", posts_path, class:"text-light font-weight-bold" %></li>
+                  <li class="mb-4 text-left h5"><%= link_to "▷ユーザーを探す", users_search_path, class:"text-light font-weight-bold" %></li>
+                  <li class="mb-4 text-left h5"><%= link_to "▷いいねリスト", posts_favorite_path, class:"text-light font-weight-bold" %></li>
+                  <li class="mb-1 text-left h5"><%= link_to "▷ログアウト", destroy_user_session_path, class:"text-light font-weight-bold", method: :delete %></li>
+                </ul>
+                  <div class="pb-2">
+                    <%= link_to new_post_path do %>
+                      <%= image_tag "新規作成.png", size:"100x60" %>
+                    <% end %>
+                 　</div>
+                </div>
+
+              <% end %>
+          </div>
+        </div>
+        <nav class="navbar navbar-dark bg-secondary mb-0 d-flex justify-content-between">
+            <%= link_to root_path, class:"navbar-brand" do %>
+              <%= image_tag "NIPPONQUESTロゴ.png", style: 'width: 230px; height: auto;'%>
+            <% end %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </nav>
+      </div>
+    <% end %>
+
+
+    <% if flash[:alert].present? %>
+      <div class="alert alert-primary mb-0"><%= flash[:alert] %><button type="button" class="close" data-dismiss="alert">&times;</button></div>
       <% end %>
+
     <div class="background-side">
      <div class="container text-center bg-white border-side">
        <div class="row">
@@ -25,13 +169,13 @@
 
          <% if admin_signed_in? %>
           <% if request.fullpath.include? "/admin" %>
-            <div class="col-lg-3 mx-auto background-color border-side2">
+            <div class="col-lg-3 mx-auto bg-secondary border-side2 d-none d-md-block">
              <div class="sticky-top">
               <%= link_to root_path do %>
                 <%= image_tag "NIPPONQUESTロゴ.png", style: 'width: 230px; height: auto;' %>
               <% end %>
 
-              <div class="col mx-auto mt-5 text-center">
+              <div class="col mx-auto mt-5 text-center d-none d-md-block">
                <ul class="list-unstyled d-inline-block">
                  <li class="mb-4 text-left h3"><%= link_to "▷投稿管理", admin_posts_path, class:"text-dark font-weight-bold" %></li>
                  <li class="mb-4 text-left h3"><%= link_to "▷ユーザー管理", admin_users_path, class:"text-dark font-weight-bold" %></li>
@@ -43,14 +187,14 @@
 
         <% else %>
 
-         <div class="col-lg-3 mx-auto background-color border-side2">
+         <div class="col-lg-3 mx-auto bg-secondary border-side2">
            <div class="sticky-top">
 
               <%= link_to posts_top_path do %>
                 <%= image_tag "NIPPONQUESTロゴ.png", style: 'width: 230px; height: auto;' %>
               <% end %>
 
-           <div class="current_user_side mt-3">
+           <div class="current_user_side mt-3 ">
              <div class="pt-4">
                <%= image_tag current_user.get_profile_image, size: "60x60" , class:"rounded-circle" %>
               </div>
@@ -90,19 +234,18 @@
               <% end %>
            </div>
 
-           <div class="col mx-auto mt-5 text-center">
+           <div class="col mx-auto mt-5 text-center d-none d-md-block">
             <ul class="list-unstyled d-inline-block">
-             <li class="mb-4 text-left h3"><%= link_to "▷みんなの投稿一覧", posts_path, class:"text-dark font-weight-bold" %></li>
-             <li class="mb-4 text-left h3"><%= link_to "▷ユーザーを探す", users_search_path, class:"text-dark font-weight-bold" %></li>
-             <li class="mb-4 text-left h3"><%= link_to "▷いいねリスト", posts_favorite_path, class:"text-dark font-weight-bold" %></li>
-             <li class="mb-4 text-left h3"><%= link_to "▷ログアウト", destroy_user_session_path, class:"text-dark font-weight-bold", method: :delete %></li>
+              <li class="mb-4 text-left h3"><%= link_to "▷みんなの投稿一覧", posts_path, class:"text-dark font-weight-bold" %></li>
+              <li class="mb-4 text-left h3"><%= link_to "▷ユーザーを探す", users_search_path, class:"text-dark font-weight-bold" %></li>
+              <li class="mb-4 text-left h3"><%= link_to "▷いいねリスト", posts_favorite_path, class:"text-dark font-weight-bold" %></li>
+              <li class="mb-4 text-left h3"><%= link_to "▷ログアウト", destroy_user_session_path, class:"text-dark font-weight-bold", method: :delete %></li>
             </ul>
-           </div>
-
-           <div class="pt-5 pb-5">
-             <%= link_to new_post_path do %>
-               <%= image_tag "新規作成.png" %>
+            <div class="pt-5 pb-5">
+              <%= link_to new_post_path do %>
+                <%= image_tag "新規作成.png" %>
               <% end %>
+           　</div>
            </div>
 
           </div>
@@ -110,7 +253,7 @@
         <% end %>
 
         <% elsif user_signed_in?  %>
-         <div class="col-lg-3 mx-auto background-color border-side2">
+         <div class="col-lg-3 mx-auto bg-secondary border-side2 d-none d-md-block">
            <div class="sticky-top">
 
              <%= link_to posts_top_path do %>
@@ -156,21 +299,19 @@
               <% end %>
            </div>
 
-           <div class="col mx-auto mt-5 text-center">
+           <div class="col mx-auto mt-5 text-center d-md-block d-none">
             <ul class="list-unstyled d-inline-block">
-             <li class="mb-4 text-left h3"><%= link_to "▷みんなの投稿一覧", posts_path, class:"text-dark font-weight-bold" %></li>
-             <li class="mb-4 text-left h3"><%= link_to "▷ユーザーを探す", users_search_path, class:"text-dark font-weight-bold" %></li>
-             <li class="mb-4 text-left h3"><%= link_to "▷いいねリスト", posts_favorite_path, class:"text-dark font-weight-bold" %></li>
-             <li class="mb-4 text-left h3"><%= link_to "▷ログアウト", destroy_user_session_path, class:"text-dark font-weight-bold", method: :delete %></li>
+              <li class="mb-4 text-left h3"><%= link_to "▷みんなの投稿一覧", posts_path, class:"text-dark font-weight-bold" %></li>
+              <li class="mb-4 text-left h3"><%= link_to "▷ユーザーを探す", users_search_path, class:"text-dark font-weight-bold" %></li>
+              <li class="mb-4 text-left h3"><%= link_to "▷いいねリスト", posts_favorite_path, class:"text-dark font-weight-bold" %></li>
+              <li class="mb-4 text-left h3"><%= link_to "▷ログアウト", destroy_user_session_path, class:"text-dark font-weight-bold", method: :delete %></li>
             </ul>
+              <div class="pt-5 pb-5">
+                <%= link_to new_post_path do %>
+                 <%= image_tag "新規作成.png" %>
+                <% end %>
+              </div>
            </div>
-
-           <div class="pt-5 pb-5">
-             <%= link_to new_post_path do %>
-               <%= image_tag "新規作成.png" %>
-              <% end %>
-           </div>
-
           </div>
          </div>
 

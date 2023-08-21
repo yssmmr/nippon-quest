@@ -8,11 +8,13 @@
         <% end %>
       ]
     $(function(){
-      let mapwidth = 400;
+      let mapwidth;
       let showname = false;
       if(document.body.clientWidth > 600){
         mapwidth = document.body.clientWidth*0.5;
         showname = true;
+      } else {
+        mapwidth = document.body.clientWidth*0.8;
       }
       $("#map-container").japanMap({
           width: mapwidth,

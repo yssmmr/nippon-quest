@@ -4,6 +4,14 @@
 *{font-family: 'DotGothic16', sans-serif;}
 
 
+.d-flex::before {
+  display: none;
+  }
+
+.d-flex::after {
+  display: none;
+  }
+
 .info-area {
     height: 120px;
   }
