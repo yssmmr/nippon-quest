@@ -145,12 +145,10 @@
               <% end %>
           </div>
         </div>
-        <nav class="navbar navbar-dark bg-secondary mb-0 justify-content-end">
-          <a class="navbar-brand">
-            <%= link_to root_path do %>
-              <%= image_tag "NIPPONQUESTロゴ.png", style: 'width: 230px; height: auto;' %>
+        <nav class="navbar navbar-dark bg-secondary mb-0 d-flex justify-content-between">
+            <%= link_to root_path, class:"navbar-brand" do %>
+              <%= image_tag "NIPPONQUESTロゴ.png", style: 'width: 230px; height: auto;'%>
             <% end %>
-          </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
