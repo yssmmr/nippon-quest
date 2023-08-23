@@ -1,40 +1,35 @@
 <div class="container text-center main-height">
 
-    <div class="row justify-content-center">
-        <div><%= image_tag "NIPPONQUESTロゴ.png", class:"logo-size"%></div>
+  <div class="row justify-content-center">
+      <div><%= image_tag "NIPPONQUESTロゴ.png", class:"logo-size"%></div>
+  </div>
+
+  <h1>次はどこへ行く？何をする？</h1>
+
+  <div>
+    <div class="row mt-3">
+      <div class="col-4 ml-5"><%= image_tag "about_comment1.png",size: "400x130" %></div>
     </div>
-
-    <h1>次はどこへ行く？何をする？</h1>
-
-    <div>
-        <div class="row mt-3">
-            <div class="col-4 ml-5"><%= image_tag "about_comment1.png",size: "400x130" %></div>
-        </div>
-        <div class="row justify-content-start ml-3"><%= image_tag "人1.png",size: "70x70" %></div>
-        <div class="row">
-            <div class="col text-right mr-5"><%= image_tag "about_comment2.png",size: "400x110" %></div>
-        </div>
-        <div class="row justify-content-end mr-3"><%= image_tag "人2.png",size: "70x70" %></div>
-
+    <div class="row justify-content-start ml-3"><%= image_tag "人1.png",size: "70x70" %></div>
+    <div class="row">
+      <div class="col text-right mr-5"><%= image_tag "about_comment2.png",size: "400x110" %></div>
     </div>
+    <div class="row justify-content-end mr-3"><%= image_tag "人2.png",size: "70x70" %></div>
+  </div>
 
-    <h3 class="mt-5">そんな悩みを解決する、訪れた場所の思い出を記録・みんなと共有できるアプリです。</h3>
+  <h3 class="mt-5">そんな悩みを解決する、訪れた場所の思い出を記録・みんなと共有できるアプリです。</h3>
 
+  <h1 class="mt-5 mb-5">新しい場所へ冒険してみませんか？</h1>
 
-    <h1 class="mt-5 mb-5">新しい場所へ冒険してみませんか？</h1>
-
-    <div class="row justify-content-around pt-5 pb-3">
-
-        <%= link_to new_user_registration_path do %>
-          <%= image_tag "新規会員登録.png"%>
-        <% end %>
-        <%= link_to new_user_session_path do %>
-          <%= image_tag "ログイン.png" %>
-        <% end %>
-        <%= link_to users_guest_sign_in_path, method: :post do %>
-          <%= image_tag "ゲストログイン.png" %>
-        <% end %>
-
-    </div>
-
+  <div class="row justify-content-around pt-5 pb-3">
+    <%= link_to new_user_registration_path do %>
+      <%= image_tag "新規会員登録.png"%>
+    <% end %>
+    <%= link_to new_user_session_path do %>
+      <%= image_tag "ログイン.png" %>
+    <% end %>
+    <%= link_to users_guest_sign_in_path, method: :post do %>
+      <%= image_tag "ゲストログイン.png" %>
+    <% end %>
+  </div>
 </div>

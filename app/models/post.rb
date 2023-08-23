@@ -68,7 +68,7 @@ class Post < ApplicationRecord
 
   enum location_genre: { food: 0, location: 1 }
 
-  enum released_flag: { released: 0, not_released: 1}
+  enum released_flag: { released: 0, not_released: 1 }
 
 
   def self.ransackable_scopes(auth_object = nil)
@@ -92,7 +92,7 @@ class Post < ApplicationRecord
   def create_notification_favorite!(current_user)
 
     #すでにいいねされているか検索
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favolite'])
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favorite'])
 
     #いいねされていない場合のみ、通知レコードを作成
     if temp.blank?

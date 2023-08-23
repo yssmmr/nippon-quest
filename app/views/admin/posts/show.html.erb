@@ -8,15 +8,15 @@
     </div>
 
     <div class="text-center text-wrap" style="width: 500px; word-break: break-all;">
-      <h2 class="pb-4 font-weight-bold">『<%= @post.location_name %>』</h2>
+      <h2 class="pb-4 font-weight-bold">『<%= @post.location_name %></h2>
     </div>
 
     <div class="text-wrap" style="width: 500px; word-break: break-all;">
-     <h4 class="pb-5">▽ <%= @post.memo %></h4>
-   </div>
+      <h4 class="pb-5">▽ <%= @post.memo %></h4>
+    </div>
   </div>
 
-    <u><h4 class="mb-3 mt-5 font-weight-bold"><%= link_to @post.user.name, admin_user_path(@post.user.id), class:"text-dark" %></h4></u>
+  <u><h4 class="mb-3 mt-5 font-weight-bold"><%= link_to @post.user.name, admin_user_path(@post.user.id), class:"text-dark" %></h4></u>
     <h4 class="mb-4"><%= @post.user.account_id %></h4>
 
     <h4>▷都道府県： <%= @post.prefecture_i18n %></h4>
@@ -46,7 +46,7 @@
 </div>
 
 
-  <script>
+<script>
   //初期マップの設定
   let map
   let marker
@@ -63,6 +63,6 @@
       map: map
     });
   }
-  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SECRET_MAP_API'] %>&callback=initMap" async defer></script>
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SECRET_MAP_API'] %>&callback=initMap" async defer></script>
 
