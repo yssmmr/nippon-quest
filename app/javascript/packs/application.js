@@ -19,4 +19,9 @@ import "./user_preview"
 Rails.start()
 ActiveStorage.start()
 
+// フラッシュメッセージ
+$(function(){
+  $('.alert').fadeOut(4000);
+});
+
 

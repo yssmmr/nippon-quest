@@ -16,8 +16,9 @@
   <body>
     <% unless controller_name == 'homes' || controller_name == "sessions"|| controller_name == "registrations" || controller_name == "passwords" %>
 
-      <div class="pos-f-t d-block d-md-none sticky-top">
+      <div class="pos-f-t d-block d-md-none sticky-top" style="z-index: 20">
         <div class="collapse" id="navbarToggleExternalContent">
+
           <div class="p-4 bg-secondary">
 
             <% if admin_signed_in? %>
@@ -145,6 +146,7 @@
 
           <% end %>
         </div>
+
       </div>
       <nav class="navbar navbar-dark bg-secondary mb-0 d-flex justify-content-between">
         <%= link_to root_path, class:"navbar-brand" do %>
@@ -159,12 +161,13 @@
 
 
     <% if flash[:alert].present? %>
-      <div class="alert alert-primary mb-0"><%= flash[:alert] %><button type="button" class="close" data-dismiss="alert">&times;</button></div>
+
+      <div class="alert alert-primary mb-0" style="position: absolute; top: 0px; left: 0px; z-index: 33;"><%= flash[:alert] %><button type="button" class="close" data-dismiss="alert">&times;</button></div>
     <% end %>
 
-    <div class="background-side">
-      <div class="container text-center bg-white border-side">
-        <div class="row">
+    <div class="background-side" style="position: relative;">
+     <div class="container text-center bg-white border-side">
+       <div class="row">
 
         <% unless controller_name == 'homes' || controller_name == "sessions"|| controller_name == "registrations" || controller_name == "passwords" %>
 
