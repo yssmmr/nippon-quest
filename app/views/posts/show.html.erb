@@ -13,49 +13,48 @@
     </div>
 
     <div class="text-wrap" style="width: 500px; word-break: break-all;">
-     <h4 class="pb-5">▽ <%= @post.memo %></h4>
-   </div>
+      <h4 class="pb-5">▽ <%= @post.memo %></h4>
+    </div>
   </div>
 
-    <u><h4 class="mb-3 mt-5 font-weight-bold"><%= link_to @post.user.name, user_path(@post.user.id), class:"text-dark" %></h4></u>
-    <h4 class="mb-4"><%= @post.user.account_id %></h4>
+  <u><h4 class="mb-3 mt-5 font-weight-bold"><%= link_to @post.user.name, user_path(@post.user.id), class:"text-dark" %></h4></u>
+  <h4 class="mb-4"><%= @post.user.account_id %></h4>
 
-    <h4>▷都道府県： <%= @post.prefecture_i18n %></h4>
+  <h4>▷都道府県： <%= @post.prefecture_i18n %></h4>
 
-    <h4 class="pb-4">▷ジャンル： <%= @post.location_genre_i18n %></h4>
+  <h4 class="pb-4">▷ジャンル： <%= @post.location_genre_i18n %></h4>
+
+  <h4 class="mt-3">▷住所： <%= @post.address %></h4>
+  <h4>▷緯度： <%= @post.latitude %></h4>
+  <h4>▷経度： <%= @post.longitude %></h4>
+
+  <div class="row mt-4 mb-4">
+    <div id='map' style="margin:0 auto;"></div>
+  </div>
+
+  <style>
+    #map {
+      height: 400px;
+      width: 400px;
+    }
+  </style>
 
 
-    <h4 class="mt-3">▷住所： <%= @post.address %></h4>
-    <h4>▷緯度： <%= @post.latitude %></h4>
-    <h4>▷経度： <%= @post.longitude %></h4>
+  <% if @post.user == current_user %>
+    <%= link_to edit_post_path(@post.id), style: "text-decoration-line: none;" do %>
+      <%= image_tag "編集.png" %>
+    <% end %>
 
-    <div class="row mt-4 mb-4">
-      <div id='map' style="margin:0 auto;"></div>
-    </div>
-
-    <style>
-      #map {
-        height: 400px;
-        width: 400px;
-        }
-    </style>
-
-
-     <% if @post.user == current_user %>
-      <%= link_to edit_post_path(@post.id), style: "text-decoration-line: none;" do %>
-        <%= image_tag "編集.png" %>
-      <% end %>
-
-      <%= link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
-        <%= image_tag "削除.png" %>
-      <% end %>
-     <% end %>
+    <%= link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+      <%= image_tag "削除.png" %>
+    <% end %>
+  <% end %>
 
 </div>
 
 
-  <script>
-  //初期マップの設定
+<script>
+//初期マップの設定
   let map
   let marker
   function initMap(){
@@ -71,6 +70,6 @@
       map: map
     });
   }
-  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SECRET_MAP_API'] %>&callback=initMap" async defer></script>
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SECRET_MAP_API'] %>&callback=initMap" async defer></script>
 

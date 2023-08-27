@@ -6,9 +6,7 @@
     <% if @user.errors.any? %>
       <h5>★<%= @user.errors.count %>件のエラーが発生しました★</h5>
       <% @user.errors.full_messages.each do |message| %>
-        <div>
-          <%= message %>
-        </div>
+        <div><%= message %></div>
       <% end %>
     <% end %>
   </div>
@@ -19,7 +17,6 @@
     <div class="d-flex justify-content-center"><%= f.file_field :profile_image, accept: "image/*" %></div>
 
     <div class="row justify-content-center mt-3 mb-4">
-
       <div id="profile-image"></div>
     </div>
 
@@ -47,6 +44,5 @@
          <%= image_tag "退会.png" %>
        <% end %>
     </div>
-
   <% end %>
 </div>

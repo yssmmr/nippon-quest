@@ -32,18 +32,15 @@
 
   <u><h1 class="mt-5"><%= @user.name %>さんの投稿一覧</h1></u>
 
- <% if @posts.any? %>
+  <% if @posts.any? %>
     <% @posts.each do |post| %>
       <div class="row col-10 mx-auto mt-4 mb-4 background-color2">
         <div class="col-4">
           <%= image_tag post.get_image,size: "300x200", class:"mt-4 mb-2 img-fluid border border-light" %>
           <h4 class="mb-3">
             <%= image_tag post.user.get_profile_image, size: "40x40" ,class:"rounded-circle" %>
-
             <%=  link_to post.user.name, admin_user_path(post.user.id), class:"text-light font-weight-bold" %>
-
-          <div><%= post.user.account_id %></div>
-
+            <div><%= post.user.account_id %></div>
           </h4>
         </div>
 
@@ -75,7 +72,6 @@
   <div class="row justify-content-center">
     <%= paginate @posts %>
   </div>
-
 
 </div>
 

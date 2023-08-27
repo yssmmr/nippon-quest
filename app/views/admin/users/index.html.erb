@@ -4,9 +4,9 @@
 
   <div class="row justify-content-end">
     <%= search_form_for @q, url: admin_users_path, id: 'search_form', class: "d-flex align-items-center" do |f| %>
-     <span class="mx-1">
-      <%= f.search_field :account_id_eq %>
-     </span>
+      <span class="mx-1">
+        <%= f.search_field :account_id_eq %>
+      </span>
       <%= image_submit_tag('検索.png', width: "75px", height: "auto", class: "mx-1") %>
     <% end %>
   </div>
@@ -25,7 +25,7 @@
       </div>
     <% end %>
   <% else %>
-      <h4 class="mt-5">ユーザーはいません</p>
+    <h4 class="mt-5">ユーザーはいません</p>
   <% end %>
 
   <div class="row justify-content-center">

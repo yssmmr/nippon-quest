@@ -31,7 +31,6 @@ class PostsController < ApplicationController
     if @follow == 'true'
       @posts = @q.result(distinct: true).where(user: @user).released.order(created_at: :desc).page(params[:page])
     end
-
   end
 
   def new
@@ -41,12 +40,12 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+
     if @post.save
       redirect_to posts_top_path, alert: "▽投稿に成功しました！"
     else
       render :new
     end
-
   end
 
   def edit
@@ -55,7 +54,6 @@ class PostsController < ApplicationController
     unless @post.user.id == current_user.id
       redirect_to post_path(@post.id), alert: "▽投稿者でないと編集できません！"
     end
-
   end
 
   def update
