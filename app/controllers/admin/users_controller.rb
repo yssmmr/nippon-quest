@@ -20,6 +20,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(is_deleted: true)
     @user.posts.destroy_all
+    sign_out @user
     redirect_to admin_users_path, alert: "▽退会処理に成功しました！"
   end
 end
