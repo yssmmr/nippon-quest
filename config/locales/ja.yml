@@ -3,6 +3,7 @@ ja:
     attributes:
       user:
         account_id: "ユーザーID"
+        email: "メールアドレス"
         name: "名前"
       post:
         location_name: "場所名"
