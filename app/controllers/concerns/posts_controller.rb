@@ -59,17 +59,26 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
 
-    if @post.update(post_params)
-      redirect_to post_path(@post.id), alert: "▽編集に成功しました！"
+    if @post.user_id == current_user.id
+      if @post.update(post_params)
+        redirect_to post_path(@post.id), alert: "▽編集に成功しました！"
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to post_path(@post.id), alert: "▽投稿者でないと編集できません！"
     end
   end
 
   def destroy
     post = Post.find(params[:id])
-    post.destroy
-    redirect_to posts_path, alert: "▽投稿削除に成功しました！"
+
+    if @post.user_id == current_user.id
+      post.destroy
+      redirect_to posts_path, alert: "▽投稿削除に成功しました！"
+    else
+      redirect_to post_path(@post.id), alert: "▽投稿者でないと削除できません！"
+    end
   end
 
   def show
