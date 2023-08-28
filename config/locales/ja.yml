@@ -11,6 +11,8 @@ ja:
         memo: "メモ"
         prefecture: "都道府県"
         location_genre: "ジャンル"
+      admin:
+        email: "メールアドレス"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました。: %{errors}'
