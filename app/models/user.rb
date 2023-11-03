@@ -28,12 +28,12 @@ class User < ApplicationRecord
 
 
  #ユーザーID制限
-  ACCOUNT_ID_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-  validates_format_of :account_id, with: ACCOUNT_ID_REGEX, message: 'には英字と数字の両方を含めて設定してください。'
+  ACCOUNT_ID_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]{6,12}\z/i.freeze
+  validates_format_of :account_id, with: ACCOUNT_ID_REGEX, message: 'には6~12文字かつ英字と数字の両方を含めて設定してください'
 
  #パスワード制限
-  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-  validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください。', on: :create
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]{6,12}\z/i.freeze
+  validates_format_of :password, with: PASSWORD_REGEX, message: 'には6~12文字かつ英字と数字の両方を含めて設定してください', on: :create
 
   validates :email, presence: true
   validates :name, presence: true
