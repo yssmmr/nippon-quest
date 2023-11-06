@@ -41,18 +41,18 @@
 
 
 ## 設計書
-・
+### ・テーブル定義書
 https://docs.google.com/spreadsheets/d/1GeZ46hVxEUe_esAgyQ5NfcQKrn1tuDNh-d6FE7NyXj0/edit?usp=sharing
 
-・ER図
+### ・ER図
 
 ![image](https://github.com/yssmmr/nippon-quest/assets/125275634/2ca067e8-03fb-48ef-95d2-bdadcc0ac559)
 
 
-・画面遷移図
+### ・画面遷移図
 ![image](https://github.com/yssmmr/nippon-quest/assets/125275634/7673ae25-2087-422a-9928-523db8dfb5d0)
 
-・AWS構成図
+### ・AWS構成図
 ![image](https://github.com/yssmmr/nippon-quest/assets/125275634/7bbc6559-5290-47e5-af47-7913715f2ef1)
 
 
