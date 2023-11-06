@@ -1,8 +1,10 @@
-![image](https://github.com/yssmmr/nippon-quest/assets/125275634/b656538c-864e-4206-b76c-8988b0657c17)
+
 
 
 
 # NIPPON QUEST
+
+![image](https://github.com/yssmmr/nippon-quest/assets/125275634/b656538c-864e-4206-b76c-8988b0657c17)
 
 ## サイト概要
 ### サイトテーマ
@@ -39,10 +41,24 @@
 
 
 ## 設計書
+・
 https://docs.google.com/spreadsheets/d/1GeZ46hVxEUe_esAgyQ5NfcQKrn1tuDNh-d6FE7NyXj0/edit?usp=sharing
 
+・ER図
+
+![image](https://github.com/yssmmr/nippon-quest/assets/125275634/2ca067e8-03fb-48ef-95d2-bdadcc0ac559)
+
+
+・画面遷移図
+![image](https://github.com/yssmmr/nippon-quest/assets/125275634/7673ae25-2087-422a-9928-523db8dfb5d0)
+
+・AWS構成図
+![image](https://github.com/yssmmr/nippon-quest/assets/125275634/7bbc6559-5290-47e5-af47-7913715f2ef1)
+
+
 ## 実装機能リスト
-https://docs.google.com/spreadsheets/d/1QySd1OI1egrJcRKi1c-TxDBm4kc_KLAlQgTD2bq1Kh4/edit?usp=sharing
+![image](https://github.com/yssmmr/nippon-quest/assets/125275634/b0ae3b99-f7b2-4908-8efc-2001beec50a0)
+
 
 ## 開発環境
 - OS：Linux
